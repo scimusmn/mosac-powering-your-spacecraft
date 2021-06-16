@@ -11,31 +11,34 @@
 #include "arduino-base/Libraries/SerialController.hpp"
 
 // Pin assignments
-const int interior_solar_pin = 6;
-const int interior_battery_pin = 5;
-const int interior_pin = 4;
 
-const int heat_solar_pin = 6;
-const int heat_battery_pin = 5;
-const int heat_pin = 4;
+const int easy_hard_pin = 10;
 
-const int communication_solar_pin = 6;
-const int communication_battery_pin = 5;
-const int communication_pin = 0; // sound will be played from PC
+const int oxygen_solar_pin = 12;
+const int oxygen_battery_pin = 13;
+const int oxygen_pin = 9;
 
-const int food_solar_pin = 6;
-const int food_battery_pin = 5;
-const int food_pin = 3;
+const int fan_solar_pin = 44;
+const int fan_battery_pin = 42;
+const int fan_pin = 8;
 
-const int fan_solar_pin = 6;
-const int fan_battery_pin = 5;
-const int fan_pin = 3;
+const int food_solar_pin = 40;
+const int food_battery_pin = 38;
+const int food_pin = 7;
 
-const int oxygen_solar_pin = 6;
-const int oxygen_battery_pin = 5;
-const int oxygen_pin = 3;
+const int communication_solar_pin = 36;
+const int communication_battery_pin = 34;
+const int communication_pin = 18; // sound will be played from PC
 
-const int easy_hard_pin = 6;
+const int heat_solar_pin = 32;
+const int heat_battery_pin = 30;
+const int heat_pin = 19;
+
+const int interior_solar_pin = 22;
+const int interior_battery_pin = 21;
+const int interior_pin = 20;
+
+const int sun_pwm_pin = 2;
 
 bool is_hard = 0;
 
