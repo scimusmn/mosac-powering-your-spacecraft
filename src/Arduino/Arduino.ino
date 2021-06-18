@@ -41,6 +41,7 @@ const int interior_pin = 20;
 const int sun_pwm_pin = 2;
 
 bool is_hard = 0;
+int sunIntesity = 0;
 
 SerialController serialController;
 const long baudrate = 115200;
@@ -73,6 +74,20 @@ void loop()
     updateEasyHard();
     delay(20);
     serialController.update();
+
+    // temporary fade pattern for sun
+    sunIntesity++;
+    if (sunIntesity > 2000)
+        sunIntesity = 0;
+    if (sunIntesity < 511)
+    {
+        analogWrite(sun_pwm_pin, (sunIntesity / 2));
+    }
+
+    if ((sunIntesity > 1000) && (sunIntesity < 1511))
+    {
+        analogWrite(sun_pwm_pin, (1510 - sunIntesity)/2);
+    }
 }
 
 void updateEasyHard()

@@ -32,19 +32,19 @@ public:
 
     void update()
     {
-        if (!digitalRead(pinSolar) && !digitalRead(pinBattery) && state != 0)
+        if (digitalRead(pinSolar) && digitalRead(pinBattery) && state != 0)
         {
             digitalWrite(pinOutput, LOW); //TODO REMOVE THIS LINE
             state = 0;
             serialController->sendMessage(message, "Off");
         }
-        else if (digitalRead(pinSolar) && state != 1)
+        else if (!digitalRead(pinSolar) && state != 1)
         {
             digitalWrite(pinOutput, HIGH); //TODO REMOVE THIS LINE
             state = 1;
             serialController->sendMessage(message, "Solar");
         }
-        else if (digitalRead(pinBattery) && state != 2)
+        else if (!digitalRead(pinBattery) && state != 2)
         {
             digitalWrite(pinOutput, HIGH); //TODO REMOVE THIS LINE
             state = 2;
