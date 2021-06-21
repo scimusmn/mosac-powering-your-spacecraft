@@ -9,6 +9,7 @@
 
 #include "SerialSelector.h"
 #include "arduino-base/Libraries/SerialController.hpp"
+#include "Ramp.h"
 
 // Pin assignments
 
@@ -41,10 +42,11 @@ const int interior_pin = 20;
 const int sun_pwm_pin = 2;
 
 bool is_hard = 0;
-int sunIntesity = 0;
 
 SerialController serialController;
 const long baudrate = 115200;
+
+Ramp sun(true, sun_pwm_pin); // create sun object that can fade on and off.
 
 // Array of selectors
 int NUMBER_OF_SELECTORS = 6;
@@ -74,20 +76,8 @@ void loop()
     updateEasyHard();
     delay(20);
     serialController.update();
-
-    // temporary fade pattern for sun
-    sunIntesity++;
-    if (sunIntesity > 2000)
-        sunIntesity = 0;
-    if (sunIntesity < 511)
-    {
-        analogWrite(sun_pwm_pin, (sunIntesity / 2));
-    }
-
-    if ((sunIntesity > 1000) && (sunIntesity < 1511))
-    {
-        analogWrite(sun_pwm_pin, (1510 - sunIntesity)/2);
-    }
+    sun.update();
+    // serialController.sendMessage("sun", sun.getPercent());
 }
 
 void updateEasyHard()
@@ -111,6 +101,13 @@ void onParse(char *message, char *value)
         // you must respond to this message, or else
         // stele will believe it has lost connection to the arduino
         serialController.sendMessage("arduino-ready", "1");
+    }
+    else if (strcmp(message, "sun") == 0)
+    {
+        if (strcmp(value, "on") == 0)
+            sun.rampTo(100, 1000); //fade sun to 100% in 1000 millisec.
+        else if (strcmp(value, "off") == 0)
+            sun.rampTo(0, 1000); //fade sun to 0% in 1000 millisec.
     }
     // TODO: ADD else if ACTIONS FOR OUTPUT ON/OFF COMMANDS
     else
