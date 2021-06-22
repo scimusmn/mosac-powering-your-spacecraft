@@ -28,7 +28,7 @@ const int grow_pin = 7;
 
 const int communication_solar_pin = 36;
 const int communication_battery_pin = 34;
-const int communication_pin = 18; // sound will be played from PC
+const int communication_pin = 18; // No connection. sound will be played from PC
 
 const int cook_solar_pin = 32;
 const int cook_battery_pin = 30;
