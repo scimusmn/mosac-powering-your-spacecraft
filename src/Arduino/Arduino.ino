@@ -46,7 +46,7 @@ bool is_hard = 0;
 SerialController serialController;
 const long baudrate = 115200;
 
-Ramp sun(true, sun_pwm_pin); // create sun object that can fade on and off.
+Ramp sun(false, sun_pwm_pin); // create sun object that can fade on and off.
 
 // Array of selectors
 int NUMBER_OF_SELECTORS = 6;
