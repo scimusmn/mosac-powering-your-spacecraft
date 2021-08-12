@@ -1,1 +1,3 @@
-# MoSAC-Poweirng-your-spacecraft
+# MoSAC - Powering your spacecraft
+
+Documentation
