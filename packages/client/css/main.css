@@ -1,0 +1,860 @@
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+html {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between images, videos, audio and canvas and the bottom of
+ * their containers: h5bp.com/i/440
+ */
+
+audio,
+canvas,
+img,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browse Happy prompt
+   ========================================================================== */
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+/*
+ * Global
+ */
+body {
+	background: #000;
+    cursor: none;
+}
+
+#wrapper {
+	width: 1920px;
+	height: 1080px;
+}
+
+.container {
+	position: absolute;
+}
+
+.window {
+	margin: 15px;
+}
+
+/*Fonts*/
+p, h3, h2, h1 {
+	color: white;
+	font-family: 'allerbold', Helvetica, sans-serif;
+	letter-spacing: 0.1em;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.5em;
+}
+
+h3 {
+	font-size: 1em;
+}
+
+p {
+	font-size: 1.2em;
+}
+
+.smaller{
+    font-size: 80%;
+    line-height: 80%;
+}
+
+.warning-red{
+    color:#cb242c !important;
+}
+.go-green{
+    color:#65a55b !important;
+}
+
+/*Borders*/
+.bordered {
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	border-color: #5d5959;
+}
+.bordered.full {
+	border: 15px solid;
+}
+.bordered.bottom {
+	border-bottom: 15px solid;
+}
+.bordered.left {
+	border-left: 15px solid;
+}
+.bordered.right {
+	border-right: 15px solid;
+}
+
+/*
+ * Windows
+ */
+.window.row1 {
+	top: 0px;
+	height: 581px;
+}
+
+.window.row2 {
+	bottom: 30px;
+	height: 410px;
+}
+
+.window .window_title {
+	text-align: center;
+	width: 100%;
+}
+.window.row1 .window_title {
+	height: 69px;
+}
+.window.row2 .window_title {
+	height: 62px;
+}
+.window .window_title h1 {
+	margin: 0px;
+	padding-top: 6px;
+    text-transform: uppercase;
+}
+.window .window_title h2 {
+	margin: 0px;
+	padding-top: 8px;
+    text-transform: uppercase;
+}
+
+.window .control_title {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+    text-transform: uppercase;
+}
+.window .control_title.top {
+	top: 0%;
+}
+.window .control_title.bottom {
+	bottom: 3%;
+}
+
+.window .control {
+	bottom: 0px;
+	height: 84%;
+}
+
+.window .control-animation {
+	height: 75%;
+}
+
+.window .comp img {
+    position: absolute;
+}
+
+ /*Power*/
+#window_power {
+	width: 1290px;
+
+}
+
+#window_power,
+#window_power .bordered{
+    border-color: #797979;
+}
+
+#window_power #container_batteries div,
+#window_power #container_batteries h3 {
+
+}
+
+#window_power .lower{
+	height: 87.5%;
+}
+
+#window_power h2.top {
+	top:0px;
+	position: absolute;
+}
+
+
+#window_power #container_orbit{
+	width: 64%;
+	left: 0%;
+}
+
+#window_power #orbit_display .space_station_container {
+    top: 193px;
+    left: 173px;
+
+    position: absolute;
+    width:435px;
+    height:92px;
+}
+
+#window_power #container_station {
+    z-index: 0;
+}
+#window_power #shadow {
+    z-index: 5;
+}
+#window_power #container_beacon {
+    z-index: 9;
+}
+#window_power #beacon {
+    top: 17px;
+    left: 11px;
+}
+
+#window_power #container_batteries{
+	width: 36%;
+	right: 0%;
+}
+
+#window_power #container_orbit #solar {
+	left: 40%;
+	position: absolute;
+	text-align: right;
+}
+
+#window_power #container_orbit #available,
+#window_power #container_orbit #unavailable {
+	left: 54%;
+	position: absolute;
+	text-align: left;
+    text-transform: uppercase;
+}
+
+#window_power #container_orbit #time_clock {
+    position: absolute;
+    top: 390px;
+    left: 20px;
+    font-size: 36px;
+    color: #797979;
+    font-family: 'aller_lightregular';
+}
+
+#window_power #battery_bars {
+	height: 85%;
+	width: 100%;
+	top: 0%;
+}
+
+#window_power #battery_bars #mask {
+    top: 68px;
+}
+
+#window_power #battery_bars .comp {
+    top: 75px;
+}
+
+#window_power #battery_bars #battery_left {
+    left: 25px;
+}
+
+#window_power #battery_bars #battery_right {
+    left: 206px;
+}
+
+#window_power #batteries_level_percent {
+	bottom: 0%;
+}
+
+
+/*Instructions*/
+#window_instructions {
+	right: 0px;
+	width: 575px;
+	background: #3b6c95;
+	border-color: #3b6c95;
+}
+
+#window_instructions #instructions_headline {
+    color: #e6b630;
+    font-size: 3.2em;
+    text-transform: uppercase;
+}
+
+#window_instructions #instructions_subhead {
+    font-size: 2.2em;
+}
+
+#window_instructions #console_text {
+	margin: 50px 50px;
+	overflow-y: visible;
+}
+
+/*Life Support*/
+#window_life_support {
+	width: 895px;
+}
+
+#window_life_support.bordered,
+#window_life_support .bordered {
+	border-color: #3b6c95;
+}
+
+#window_life_support #o2_control{
+	width: 32.5%;
+	left: 0%;
+}
+
+#window_life_support #o2_level_container{
+	width: 18%;
+	right: 50%;
+}
+
+#window_life_support #fan_control{
+	width: 32.5%;
+	left: 50%;
+}
+
+#window_life_support #fan_level{
+	width: 18%;
+	right: 0%;
+}
+
+#window_life_support #level_bar_display {
+    top: 49px;
+    left: -12px;
+}
+
+#window_life_support #level_bar_display #mask {
+    top: 0px;
+}
+
+
+
+/*Auxillary*/
+#window_auxillary {
+	right: 0px;
+	width: 970px;
+}
+
+#window_auxillary,
+#window_auxillary .bordered{
+    border-color: #5d5959;
+}
+
+#window_auxillary .control {
+	width: 238.75px;
+}
+
+#window_auxillary #food_control {
+	left: 0px;
+}
+
+#window_auxillary #comm_control {
+	left: 238.75px;
+}
+
+#window_auxillary #heat_control {
+	right: 238.75px;
+}
+
+#window_auxillary #light_control {
+	right: 0px;
+}
+
+
+/*Control Icons*/
+.control_icons {
+
+	bottom: 0%;
+	width: 100%;
+	height: 26%;
+
+}
+.control_icons div {
+
+	height: 100%;
+	float: left;
+	position: absolute;
+
+}
+.control_icons div.active {
+}
+#window_life_support .control_icons div {
+    width: 93.5px;
+}
+#window_auxillary .control_icons div {
+    width: 78px;
+}
+#window_life_support .control_icons .state_off {
+    left: 93.5px;
+    padding-top: 3px;
+}
+#window_auxillary .control_icons .state_off {
+    left: 78px;
+    padding-top: 3px;
+}
+.control_icons .state_solar {
+	left: 0%;
+    padding-top: 4px;
+}
+.control_icons .state_battery {
+	right: 0%;
+    padding-top: 4px;
+    padding-left: 1px;
+}
+
+/*Popup Youre Dead*/
+#popup_you_are_dead {
+
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    background: rgba(0,0,0,0.4);
+    overflow: hidden;
+    margin: 0pxf;
+
+}
+
+#popup_you_are_dead #content_window{
+    position: absolute;
+    text-align: center;
+    top:100px;
+    right: 355px;
+    width: 1200px;
+    height: 790px;
+    z-index: 9;
+    background: #797979;
+    border-color: #999;
+    background-image: url(../img/warning.png);
+    background-repeat: no-repeat;
+    background-position: center 75px;
+
+}
+
+#popup_you_are_dead h1,
+#popup_you_are_dead p {
+    margin: 150px 120px;
+}
+
+#popup_you_are_dead h1 {
+    color: #e6b630;
+    font-size: 6.8em;
+    margin-top:200px;
+    text-transform: uppercase;
+}
+
+#popup_you_are_dead p {
+    font-size: 3.2em;
+}
+
+
+/*Icons*/
+.control_icons .icon {
+    display:inline-block;
+    overflow:hidden;
+    background-repeat: no-repeat;
+}
+#window_life_support .icon {
+    margin-left: -2px;
+}
+#window_auxillary .icon {
+    margin-left: -9px;
+    background-size: auto;
+}
+
+/*Solar*/
+.state_solar .icon          {background-image:url(../img/btnSolar.png);}
+.state_solar .icon.active {width:81px; height:76px; background-position: -0px -0px}
+.state_solar .icon.off {width:81px; height:76px; background-position: -81px -0px}
+.state_solar .icon.red {width:81px; height:76px; background-position: -162px -0px}
+/*Battery*/
+.state_battery .icon        {background-image:url(../img/btnBattery.png);}
+.state_battery .icon.active {width:81px; height:76px; background-position: -0px -0px}
+.state_battery .icon.off {width:81px; height:76px; background-position: -81px -0px}
+.state_battery .icon.red {width:81px; height:76px; background-position: -162px -0px}
+/*Off*/
+.state_off .icon            {background-image:url(../img/btnOff.png);}
+.state_off .icon.active {width:81px; height:76px; background-position: -0px -0px}
+.state_off .icon.off {width:81px; height:76px; background-position: -81px -0px}
+
+/*Make off states darker by reducing opacity*/
+.icon.off{
+    opacity: 0.35;
+    filter: alpha(opacity=35); /* For IE8 and earlier */
+}
+
+/*
+ * Animations
+ */
+.animation {
+    display:inline-block;
+    overflow:hidden;
+    background-repeat: no-repeat;
+    padding: 0px;
+    margin: 0px;
+    background: rgba(22,99,66,0.0);
+}
+/*O2*/
+#o2_control .animation{
+    background-image:url(../img/oxygenGen.png);
+    width:256px;
+    height:215px;
+    margin-top:9px;
+    margin-left:0px;
+}
+/*Fan*/
+#fan_control .animation{
+    background-image:url(../img/fan.png);
+    width:239px;
+    height:203px;
+    margin-top:12px;
+    margin-left:2px;
+}
+/*Food*/
+#food_control .animation{
+    background-image:url(../img/growingPlants.png);
+    width:239px;
+    height:203px;
+    margin-top:14px;
+    margin-left:-13px;
+}
+/*Communication*/
+#comm_control .animation{
+    background-image:url(../img/communications.png);
+    width:239px;
+    height:203px;
+    margin-top:23px;
+    margin-left:-17px;
+}
+/*Heat*/
+#heat_control .animation{
+    background-image:url(../img/cookingHeat.png);
+    width:239px;
+    height:203px;
+    margin-top:6px;
+    margin-left:-12px;
+}
+/*Light*/
+#light_control .animation {
+    background-image:url(../img/cabinLights.png);
+    width:241px;
+    height:203px;
+    margin-top:26px;
+    margin-left:-18px;
+}
+
+
+/* Alerts */
+.alert {
+    display: none;
+    position: absolute;
+    text-align: center;
+    top: 30px;
+    left: 11px;
+    width: 185px;
+    height: 77px;
+    color: white;
+    padding: 15px 30px;
+    padding-top:76px;
+    background-color: rgba(233,41,53,0.85);
+    background-image: url(../img/warning.png);
+    background-repeat: no-repeat;
+    background-position: center 15px;
+    font-size: 16px;
+}
+
+#window_power .alert {
+    top: 50px;
+    width: 360px;
+    height: 222px;
+    font-size: 20px;
+    background-position: center 30px;
+}
+
+#window_auxillary .alert {
+    width: 172px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/*  Debug Classes */
+
+/*.alert {
+    display: block !important; /*  Show all alerts *
+}*/
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<config>
+
+    <!-- ======== -->
+    <!-- SETTINGS -->
+    <!-- ======== -->
+    <settings>
+
+        <!-- Set whether secondary language is Spanish or French ('es' or 'fr') -->
+        <setting id="secondaryLanguage" value="es" />
+
+        <setting id="developerMode" value="false" />
+        <setting id="orbitDuration" value="90" />
+        <setting id="o2FillRate" value="1" />
+        <setting id="o2DepletionRate" value="-1" />
+        <setting id="o2UpdateRate" value="550" />
+        <setting id="circulationFillRate" value="1" />
+        <setting id="circulationDepletionRate" value="-1" />
+        <setting id="circulationUpdateRate" value="100" />
+
+        <!-- Setting for variations in the switch wiring per component -->
+        <setting id="invertedSwitches" value="true" />
+        <setting id="invertedLanguageSwitches" value="true" />
+
+        <!-- Customized battery multipliers, to allow for different sized solar arrays per component -->
+        <!-- These settings adjust the readings of the battery voltage from the arduino.
+              The readings from the arduino are integer values between 0 and 1024.
+              batteryOffset sets the voltage value that is recorded as 0 on the display battery
+              batteryScale divides the offset-adjusted, to make the hardware.battery value between 0 and 100
+
+              To calibrate these values, uncomment the NOTE line in the hardware.init function,
+              and watch the values reported in the javascript console in the browser.
+
+              The batteryOffset value should be set to the reported voltage about 1/3 of the way through
+              the night pass with all devices on battery power.
+
+              The batterScale value should be set to the maximum voltage reported (at the end of a day pass)
+              minus the batteryOffset value, and divided by 100
+
+              Example:  with all devices set on battery power, the console is reporting
+              a value of 260, 1/3 of the way through the night.
+              Hence, batteryOffset is set to 260.
+
+              With no devices turned on for a full day cycle, the console reports
+              a value of 535. 535- batteryOffset (260) = 275, and so the
+              batteryScale value is set to 2.75.
+        -->
+        <setting id="batteryScale" value="2.75" />
+        <setting id="batteryOffset" value="260" />
+
+    </settings>
+
+</config>

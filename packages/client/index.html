@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Powering Your Spacecraft</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/fonts/Aller/stylesheet.css">
+
+        <script type="text/javascript">
+          window.requireNode = window.require;
+          window.require = undefined;
+        </script>
+       <!-- <script src="js/vendor/jwerty/jwerty.js"></script> -->
+        <script src="js/vendor/requirejs/require.js" data-main="js/app.js"></script>
+
+    </head>
+    <body>
+
+        <div id="wrapper" class="container">
+
+        	<video id="backdrop_vid" width="100%" height="100%" autoplay loop style="display:none">
+				<source src="img/starfield.mp4" type="video/mp4">
+			</video>
+
+	    	<!-- POWER WINDOW -->
+	    	<div id="window_power" class="window container row1 bordered full">
+
+	    		<div class="window_title bordered bottom">
+	    			<h1 id="power_supply" >+</h1>
+	    		</div>
+
+	    		<div id="container_orbit" class="container lower">
+	    			<div id="orbit_display" class="container comp">
+	    				<img id="sun" src="img/solarPower0002.png"/>
+	    				<img id="ring" src="img/solarPower0003.png"/>
+	    				<div id="container_station" class="space_station_container">
+	    					<img id="space_station" src="img/ISS.png"/>
+	    				</div>
+	    				<img id="shadow" src="img/solarPower0005.png"/>
+	    				<div id="container_beacon" class="space_station_container">
+	    					<img id="beacon" src="img/beacon.png"/>
+	    				</div>
+	    				<img id="earth" src="img/solarPower0001.png"/>
+	    				<h3 id="time_clock" >+</h3>
+	    			</div>
+	    			<h2 id="solar" class="top">+</h2>
+	    			<h2 id="available" class="top">+</h2>
+	    		</div>
+
+	    		<div id="container_batteries" class="container lower  bordered left">
+	    			<div id="battery_bars" class="container bordered bottom">
+	    				<h2 id="batteries" class="control_title top">+</h2>
+	    				<div id="battery_left" class="container comp">
+		    				<img id="chunk_1" src="img/batteryPower0002.png"/>
+		    				<img id="chunk_2" src="img/batteryPower0003.png"/>
+		    				<img id="chunk_3" src="img/batteryPower0004.png"/>
+		    				<img id="chunk_4" src="img/batteryPower0005.png"/>
+		    				<img id="mask" src="img/batteryPower0006.png"/>
+		    				<img id="frame" src="img/batteryPower0001.png"/>
+		    				<img id="fail" src="img/batteryPower0007.png"/>
+		    			</div>
+		    			<div id="battery_right" class="container comp">
+		    				<img id="chunk_1" src="img/batteryPower0002.png"/>
+		    				<img id="chunk_2" src="img/batteryPower0003.png"/>
+		    				<img id="chunk_3" src="img/batteryPower0004.png"/>
+		    				<img id="chunk_4" src="img/batteryPower0005.png"/>
+		    				<img id="mask" src="img/batteryPower0006.png"/>
+		    				<img id="frame" src="img/batteryPower0001.png"/>
+		    				<img id="fail" src="img/batteryPower0007.png"/>
+		    			</div>
+	    			</div>
+	    			<h2 id="batteries_level_percent" class="control_title">100%</h2>
+	    			<h3 id="batteries_depleted" class="alert batteries">+</h3>
+	    		</div>
+
+	    	</div>
+
+	    	<!-- INSTRUCTIONS WINDOW -->
+	    	<div id="window_instructions" class="window container row1 bordered full">
+	    		<div id="console_text">
+	    			<h1 id="instructions_headline">+</h1>
+	    			<p id="instructions_subhead">+</p>
+	    			<p id="tip_1">+</p>
+	    		</div>
+	    	</div>
+
+	    	<!-- LIFE SUPPORT WINDOW -->
+	    	<div id="window_life_support" class="window container row2 bordered full">
+
+	    		<div class="window_title bordered bottom">
+	    			<h2 id="life_support_equipment">+</h2>
+	    		</div>
+
+	    		<!-- Oxygen -->
+	    		<div id="o2_control" class="control container bordered right">
+	    			<div class="control-animation bordered bottom">
+		    			<h3 id="oxygen_generator" class="control_title top">+</h3>
+		    			<div id="animation" class="animation">
+		    				<!-- insert animation here -->
+		    			</div>
+		    			<h3 id="oxygen_depleted" class="alert oxygen">+</h3>
+	    			</div>
+					<div class="control_icons container">
+						<div class="state_solar bordered right"><div class="icon"></div></div>
+						<div class="state_off"><div class="icon"></div></div>
+						<div class="state_battery bordered left"><div class="icon"></div></div>
+					</div>
+	    		</div>
+	    		<div id="o2_level_container" class="control container level-state bordered right">
+	    			<div id="level_bar_display" class="container comp">
+	    				<img id="level_bar" src="img/levels0002.png"/>
+	    				<img id="mask" src="img/levels0003.png"/>
+	    				<img id="frame" src="img/levels0001.png"/>
+	    			</div>
+	    			<h3 id="batteries_level_percent" class="control_title bottom">100%</h3>
+	    			<h3 id="o2_level" class="control_title top">+</h3>
+	    		</div>
+
+	    		<!-- Fan -->
+	    		<div id="fan_control" class="control container bordered left">
+	    			<div class="control-animation bordered bottom">
+	    				<h3 id="fan" class="control_title top">+</h3>
+	    				<div id="animation" class="animation">
+		    				<!-- insert animation here -->
+		    			</div>
+		    			<h3 id="circulation_depleted" class="alert circulation">+</h3>
+	    			</div>
+	    			<div class="control_icons container">
+	    				<div class="state_solar bordered right"><div class="icon"></div></div>
+						<div class="state_off"><div class="icon"></div></div>
+						<div class="state_battery bordered left"><div class="icon"></div></div>
+	    			</div>
+	    		</div>
+	    		<div id="fan_level" class="control container level-state bordered left">
+	    			<div id="level_bar_display" class="container comp">
+	    				<img id="level_bar" src="img/levels0002.png"/>
+	    				<img id="mask" src="img/levels0003.png"/>
+	    				<img id="frame" src="img/levels0001.png"/>
+	    			</div>
+	    			<h3 id="circulation_feedback_excellent" class="control_title bottom">+</h3>
+	    			<h3 id="circulation" class="control_title top">+</h3>
+	    		</div>
+	    	</div>
+
+	    	<!-- AUXILLARY EQ. WINDOW -->
+	    	<div id="window_auxillary" class="window container row2 bordered full">
+
+	    		<div class="window_title bordered bottom">
+	    			<h2 id="auxillary_equipment">+</h2>
+	    		</div>
+
+	    		<!-- Food -->
+	    		<div id="food_control" class="control container bordered right">
+	    			<div class="control-animation bordered bottom">
+	    				<h3 id="growing_food" class="control_title">+</h3>
+	    				<div id="animation" class="animation">
+		    				<!-- insert animation here -->
+		    			</div>
+		    			<h3 id="food_warning" class="alert food">+</h3>
+	    			</div>
+	    			<div class="control_icons container">
+	    				<div class="state_solar bordered right"><div class="icon"></div></div>
+						<div class="state_off"><div class="icon"></div></div>
+						<div class="state_battery bordered left"><div class="icon"></div></div>
+	    			</div>
+	    		</div>
+
+	    		<!-- Communication -->
+	    		<div id="comm_control" class="control container bordered right">
+	    			<div class="control-animation bordered bottom">
+	    				<h3 id="communication" class="control_title">+</h3>
+	    				<div id="animation" class="animation">
+		    				<!-- insert animation here -->
+		    			</div>
+		    			<h3 id="comm_warning" class="alert comm">+</h3>
+	    			</div>
+	    			<div class="control_icons container">
+	    				<div class="state_solar bordered right"><div class="icon"></div></div>
+						<div class="state_off"><div class="icon"></div></div>
+						<div class="state_battery bordered left"><div class="icon"></div></div>
+	    			</div>
+	    		</div>
+
+	    		<!-- Heat -->
+	    		<div id="heat_control" class="control container bordered left">
+	    			<div class="control-animation bordered bottom">
+	    				<h3 id="heat_to_cook" class="control_title">+</h3>
+	    				<div id="animation" class="animation">
+		    				<!-- insert animation here -->
+		    			</div>
+		    			<h3 id="heat_warning" class="alert heat">+</h3>
+	    			</div>
+	    			<div class="control_icons container">
+	    				<div class="state_solar bordered right"><div class="icon"></div></div>
+						<div class="state_off"><div class="icon"></div></div>
+						<div class="state_battery bordered left"><div class="icon"></div></div>
+	    			</div>
+	    		</div>
+
+	    		<!-- Light -->
+	    		<div id="light_control" class="control container bordered left">
+	    			<div class="control-animation bordered bottom">
+	    				<h3 id="interior_lights" class="control_title">+</h3>
+	    				<div id="animation" class="animation">
+		    				<!-- insert animation here -->
+		    			</div>
+		    			<h3 id="lights_warning" class="alert lights">+</h3>
+	    			</div>
+	    			<div class="control_icons container">
+	    				<div class="state_solar bordered right"><div class="icon"></div></div>
+						<div class="state_off"><div class="icon"></div></div>
+						<div class="state_battery bordered left"><div class="icon"></div></div>
+	    			</div>
+	    		</div>
+
+	    	</div>
+
+	    	<!-- POPUP WINDOW -->
+	    	<div id="popup_you_are_dead" class="container" style="display:none;">
+	    		<div id="content_window" class="bordered full">
+	    			<h1 id="popup_dead_header">+</h1>
+	    			<p id="popup_dead_sub">+</p>
+    			</div>
+	    	</div>
+
+    	</div>
+
+    </body>
+</html>
