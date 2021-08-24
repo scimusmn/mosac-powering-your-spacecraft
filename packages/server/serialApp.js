@@ -11,7 +11,7 @@ var wss = new WebSocketServer({port: 8080});
 // Tell the wsServer what to do on connection to a client;
 
 var webSock = null;
-var sp = null;
+var serialPort = null;
 
 wss.on('connection', function(ws) {
 
@@ -24,7 +24,7 @@ wss.on('connection', function(ws) {
 
      break;
      }*/
-    if (sp) sp.write(message + '|');
+    if (serialPort) serialPort.write(message + '|');
     console.log(message);
   });
 
@@ -45,18 +45,49 @@ wss.on('connection', function(ws) {
  * to read the serial port where Arduino is sitting.
  */
 
-var com = require('serialport');
-var bufSize = 512;
+var SerialPort = require('serialport');
 
-sp = new com.SerialPort(portName, {
-  baudrate: 9600,
-  parser: com.parsers.readline('\r\n'),
-  buffersize:bufSize
+// Uncomment to list all available ports
+// (async () => {
+//   try {
+//     const serialList = await SerialPort.list();
+//     serialList.forEach(function(port) {
+//       console.log(port.comName);
+//      });
+//   } catch (e) {
+//     console.log(e);
+//   }
+// })()
+
+// const SerialPort = require('serialport');
+const Readline = SerialPort.parsers.Readline;
+serialPort = new SerialPort(portName, {
+  baudRate: 115200,
+})
+
+const parser = new Readline();
+serialPort.pipe(parser);
+
+serialPort.on('open', function() {
+  setTimeout(() => {
+    serialPort.write('{wake-arduino:1}');
+  }, 1000);
+})
+
+parser.on('data', (data) => {
+  if (webSock) webSock.send(data);
+  console.log(data);
 });
 
-sp.on('open', function() {
-  sp.on('data', function(data) {
-    if (webSock) webSock.send(data);
-    console.log(data);
-  });
-});
+// Examples of correct outward communication
+// setTimeout(() => {
+//   serialPort.write('{sun:on}');
+// }, 5000);
+
+// setTimeout(() => {
+//   serialPort.write('{get-all-states:1}');
+// }, 7500);
+
+// setTimeout(() => {
+//   serialPort.write('{sun:off}');
+// }, 9500);

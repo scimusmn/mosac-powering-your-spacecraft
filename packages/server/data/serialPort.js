@@ -3,5 +3,5 @@
  * in use for this component. This is a unique ID for each install.
  */
 exports.serialPort = function () {
-  return "/dev/tty.usbserial-XXXXXXX";
+  return "/dev/tty.usbmodem14301";
 };
