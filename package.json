@@ -1,0 +1,16 @@
+{
+  "name": "mosac-powering-your-spacecraft",
+  "version": "1.0.0",
+  "scripts": {
+    "setup": "run-p setup:*",
+    "setup:server": "cd packages/server/data/ && cp serialPort.default.js serialPort.js",
+    "setup:client": "cd packages/client/data/ && cp settings.default.xml settings.xml",
+    "start": "run-p start:*",
+    "start:server": "cd packages/server/ && node serialApp.js",
+    "start:client": "cd packages/client/ && python3 -m http.server"
+  },
+ "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
+  

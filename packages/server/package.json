@@ -1,0 +1,13 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "A NodeJS server that passes messages between browser application and Arduino via websockets and serial port.",
+  "main": "serialApp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "serialport": "^9.2.0",
+    "ws": "0.6.3"
+  }
+}

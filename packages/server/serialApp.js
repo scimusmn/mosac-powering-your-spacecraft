@@ -1,4 +1,4 @@
-var serialLookup = require('../data/serialPort.js')
+var serialLookup = require('./data/serialPort.js')
 var portName = serialLookup.serialPort();
 
 /**
