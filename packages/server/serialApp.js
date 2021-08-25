@@ -1,6 +1,3 @@
-var serialLookup = require('./data/serialPort.js')
-var portName = serialLookup.serialPort();
-
 /**
  * For WebSockets, require 'ws'.Server
  */
@@ -19,11 +16,7 @@ wss.on('connection', function(ws) {
   console.log('connected');
 
   ws.on('message', function(message) {
-    /*switch(message.split("=")[0]){
-     default:
-
-     break;
-     }*/
+    // Forward message from client to serial port
     if (serialPort) serialPort.write(message + '|');
     console.log(message);
   });
@@ -39,47 +32,52 @@ wss.on('connection', function(ws) {
 
 });
 
-/**
- * Use the cool library
- * git://github.com/voodootikigod/node-serialport.git
- * to read the serial port where Arduino is sitting.
- */
-
 var SerialPort = require('serialport');
-
-// Uncomment to list all available ports
-// (async () => {
-//   try {
-//     const serialList = await SerialPort.list();
-//     serialList.forEach(function(port) {
-//       console.log(port.comName);
-//      });
-//   } catch (e) {
-//     console.log(e);
-//   }
-// })()
-
-// const SerialPort = require('serialport');
 const Readline = SerialPort.parsers.Readline;
-serialPort = new SerialPort(portName, {
-  baudRate: 115200,
-})
-
 const parser = new Readline();
-serialPort.pipe(parser);
 
-serialPort.on('open', function() {
-  setTimeout(() => {
-    serialPort.write('{wake-arduino:1}');
-  }, 1000);
-})
+// Auto find Arduino by searching ports
+SerialPort.list().then((list) => {
+  Object.keys(list).forEach((key) => {
+    const portInfo = list[key];
+    const { path, manufacturer } = portInfo;
+    console.log(path);
+    if (manufacturer !== undefined) {
+      if (manufacturer.includes('Arduino') 
+        || manufacturer.includes('Adafruit')
+        || manufacturer.includes('Silicon Labs')) {
+        console.log(`Auto-enabling: ${path} - ${manufacturer}`);
+        enableSerial(path);
+      }
+    }
+  });
+}); 
 
-parser.on('data', (data) => {
-  if (webSock) webSock.send(data);
-  console.log(data);
-});
+const enableSerial = (path) => {
 
-// Examples of correct outward communication
+  serialPort = new SerialPort(path, {
+    baudRate: 115200,
+  });
+
+  serialPort.pipe(parser);
+
+  serialPort.on('open', function() {
+    setTimeout(() => {
+      serialPort.write('{wake-arduino:1}');
+    }, 1000);
+  })
+
+  parser.on('data', (data) => {
+    // Forward message from Arduino to client application
+    if (webSock) webSock.send(data);
+    console.log(data);
+  });
+
+}
+
+// Examples of working outward communication
+//
+
 // setTimeout(() => {
 //   serialPort.write('{sun:on}');
 // }, 5000);
