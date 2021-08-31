@@ -23,7 +23,6 @@ define(
           // Web Socket is connected, send data using send()
           clearInterval(wsClient.connectInterval);
 
-          // TODO: Expand these conditionals with full curly braces, not shorthand
           if (customCB) ws.onmessage = customCB;
           else ws.onmessage = function(evt) {
           };

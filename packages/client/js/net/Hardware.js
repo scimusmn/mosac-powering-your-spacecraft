@@ -10,16 +10,13 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
 
     var _this = this;
     _this.state = 0;
-
     _this.onchange = null;
 
     _this.setState = function(val) {
 
-    // Convert value string to integer
-    // For reference. 
-    // ControlUI.STATE_OFF = 0;
-    // ControlUI.STATE_SOLAR = 1;
-    // ControlUI.STATE_BATTERY = 2;
+      // OFF = 0;
+      // SOLAR = 1;
+      // BATTERY = 2;
 
       let powerState = 0;
       if (val === 'solar') {
@@ -31,28 +28,6 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
       if (_this.onchange) _this.onchange();
     }
 
-    //set the function to handle when the solar pin toggles on or off
-    // TODO-TIN: This can be deleted once we are responding to messages - e.g. {cooking:solar}
-    // instead of pin switches
-
-    // arduino.watchPin(solPin, function(pin, val) {
-    //   _this.state = (val) ? 0 : 1;
-    //   if (_this.onchange) _this.onchange();
-    // });
-
-    //set the function to handle when the battery pin toggles on or off
-    // arduino.watchPin(batPin, function(pin, val) {
-    //   _this.state = (val) ? 0 : 2;
-    //   if (_this.onchange) _this.onchange();
-    // });
-
-    //requests the current state of the solar and battery switches
-    // TODO:TN: This data should now come from the simulation,
-    // not read from the arduinos
-    // _this.update = function() {
-      // arduino.digitalRead(solPin);
-      // arduino.digitalRead(batPin);
-    // }
   }
 
   /* "Switch" is the software representation of the hardware rotary and toggle
@@ -62,30 +37,22 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
   function Switch() {
     var _this = this;
     _this.state = 0;
-
     _this.onchange = null;
 
     _this.setState = function(val) {
 
-      // For reference.
-      // AppData.DIFFICULTY_EASY = 0;
-      // AppData.DIFFICULTY_HARD = 1;
+      // EASY = 0;
+      // HARD = 1;
   
-        _this.state = (val === 'hard') ? 1 : 0;
-        if (_this.onchange) _this.onchange();
-      }
+      _this.state = (val === 'hard') ? 1 : 0;
+      if (_this.onchange) _this.onchange();
+    }
 
-    // function to set the handlers for each of the switches.
-    // arduino.watchPin(pin, function(pin, val) {
-    //   _this.state = val;
-    //   if (_this.onchange) _this.onchange();
-
-    // });
   }
 
   /*
    * Title: hardware
-   * Description: Obeject to hold all of the info about the hardware setup
+   * Description: Object to hold all of the info about the hardware setup
    */
 
   function hardware() {
@@ -100,13 +67,6 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
 
   // initCB is the callback funtion to be call on initialization
   hardware.initCB = null;
-
-  // Initialize connection to websocket client and
-  // set the onData message callback.
-  // hardware.connect = function(cb) {
-  //   wsClient.setOnDataCallback(arduino.onData);
-  //   wsClient.connect(cb);
-  // };
 
   // Send a message to the websocket client.
   hardware.sendToArduino = function(msg) {
@@ -124,8 +84,8 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
 
     console.log(message, value);
 
-    // Note - this is where we patch the original harware 
-    // naming scheme to the new arduino message scheme. (e.g. grow -> food) 
+    // Note - this is where we patch the original hardware naming
+    // scheme to the new arduino message scheme. (e.g. grow -> food) -tn
     switch (message) {
       case 'interior':
         hardware.lights.setState(value);
@@ -164,9 +124,15 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
    * and turns the sun on for the first time
    */
   hardware.link = function(cb) {
+
+    // Initialize connection to websocket client and
+    // set the onData message callback.
     wsClient.setOnDataCallback(hardware.onData);
     wsClient.connect(hardware.init);
+
     hardware.initCB = cb;
+
+    // Set initial sun state
     setTimeout(() => {
       hardware.sunState(1);
     }, 50);
@@ -201,19 +167,6 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
       hardware.batteryState = true;
       // arduino.digitalWrite(2, 0);
     }
-  };
-
-  /*
-   * Title: update
-   * Description: force a refresh of the current state of the devices.
-   */
-  hardware.update = function() {
-    hardware.oxygen.update();
-    hardware.fan.update();
-    hardware.food.update();
-    hardware.comm.update();
-    hardware.heat.update();
-    hardware.lights.update();
   };
 
   /*
@@ -266,10 +219,6 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
     if (hardware.initCB) hardware.initCB();
   };
 
-  var sunLevel = 100;
-  var snState = true;
-  var sunInt = null;
-
   /*
    * Title: sunState
    * Description: starts the ramping function to control the sun's brightness.
@@ -283,38 +232,12 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
   // 1 = on (in sunlight)
   hardware.sunState = function(mode) {
     console.log('☀️ sunState()', mode);
-    snState = mode;
     // setTimeout(hardware.rampSun, 10);
     const onOff = mode ? 'on' : 'off';
     console.log('sending', onOff);
     wsClient.send(`{sun:${onOff}}`);
   };
 
-  /*
-   * Title: rampSun
-   * Description: controls turning the brightness of the sun up or down.
-   * if the snState is true, but the sunLevel is not at it's maximum, increment
-   * the sunLevel, command the arduino to that level, and set this function to
-   * be call again in 10ms.
-   * if the snState is false, but the sunLevel is not at it's minimum, decrement
-   * the sunLevel, command the arduino to that level, and set this function to
-   * be call again in 10ms.
-   */
-  // TODO: [TN] We can keep this same logic, 
-  // but instead of using analogWrite every tick,
-  // we can only send arduino message when transition
-  // between off/on is required.
-  // hardware.rampSun = function() {
-  //   if (snState && sunLevel < 255) {
-  //     arduino.analogWrite(3, sunLevel++);
-  //     if (sunLevel < 255) setTimeout(hardware.rampSun, 10);
-  //   } else if (!snState && sunLevel > 100) {
-  //     arduino.analogWrite(3, sunLevel--);
-  //     if (sunLevel > 100) setTimeout(hardware.rampSun, 10);
-  //   }
-  // };
-
-  //return hardware for the purposes of require.js
   return hardware;
 
 });
