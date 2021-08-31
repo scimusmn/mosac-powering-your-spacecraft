@@ -61,15 +61,15 @@ define(
           ControlManager.setControlState('light_control', this.state)
         };
 
-        hardware.language.onchange = function() {
-          Language.convertState(this.state);
-        };
+        // hardware.language.onchange = function() {
+        //   Language.convertState(this.state);
+        // };
 
         hardware.difficulty.onchange = function() {
           ControlManager.setDifficulty(this.state)
         };
 
-        hardware.update();
+        // hardware.update();
 
       });
 

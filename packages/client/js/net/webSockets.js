@@ -45,7 +45,7 @@ define(
       }
     };
 
-    wsClient.setMsgCallback = function(cb) {
+    wsClient.setOnDataCallback = function(cb) {
       customCB = cb;
       if (ws) ws.onmessage = cb;
     };
