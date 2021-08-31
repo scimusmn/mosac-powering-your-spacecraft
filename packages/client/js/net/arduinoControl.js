@@ -4,7 +4,15 @@ define(['net/webSockets'], function(wsClient) {
 
   arduino.handlers = [];
 
+  // TODO-TN: This can be replaced with a much simpler onData style
+  // function with switch statement.
+  // In fact, this class can mainly serve only as a websocket go-between.
+  // Otherwise, is can simply relay messages to and from the WS connection.
+  // UPDATE- ACTUALLY, there is a whole nother webSockets.js file to handle that
+  // I think this entire file might be able to go away.
+
   //function to handle messages received from the websocket connection
+  
   arduino.onMessage = function(evt) {
     var dataRay = evt.data.split(/[\s|,()=]+/);
     switch (dataRay[0]){
@@ -21,6 +29,10 @@ define(['net/webSockets'], function(wsClient) {
 
   //call this function to connect the websocket client to the server; also sets \
   // the message callback for the ws client
+  
+  // TODO-TN: This setMsgCallback is the important bit, 
+  // and could be moved into Hardware.js
+  // (and that's where we'd make all the wsClient.send() calls)
   arduino.connect = function(cb) {
     wsClient.setMsgCallback(arduino.onMessage);
     wsClient.connect(cb);
@@ -60,6 +72,10 @@ define(['net/webSockets'], function(wsClient) {
 
   arduino.stopReport = function(pin) {
     wsClient.send('r|stopReport(' + pin + ')');
+  };
+
+  arduino.passThru = function(msg) {
+    wsClient.send(msg);
   };
 
   return arduino;

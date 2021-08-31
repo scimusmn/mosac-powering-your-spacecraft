@@ -86,7 +86,10 @@ define(['net/AppData', 'net/arduinoControl'],function(AppData, arduino) {
   hardware.link = function(cb) {
     arduino.connect(hardware.init);
     hardware.initCB = cb;
-    hardware.sunState(1);
+    setTimeout(() => {
+      hardware.sunState(1);
+    }, 50);
+    // hardware.sunState(1);
   };
 
   // hardware.batteryInt is the stores the interval timer for checking battery voltage
@@ -141,6 +144,8 @@ define(['net/AppData', 'net/arduinoControl'],function(AppData, arduino) {
    */
   hardware.init = function() {
 
+    // TODO-TN: This should be refactored to retain
+    // callbacks, but change based on message strings not pins
     hardware.oxygen = new Device(5, 4);
     hardware.fan = new Device(7, 6);
     hardware.food = new Device(9, 8);
@@ -151,6 +156,8 @@ define(['net/AppData', 'net/arduinoControl'],function(AppData, arduino) {
     hardware.language = new Switch(16);
     hardware.difficulty = new Switch(17);
 
+    // TODO-TN: This can be removed once the battery drain
+    // is simulated elsewhere in application code.
     arduino.setHandler(0, function(pin, val) {
       //NOTE: uncomment the following line to monitor the incoming value, for calibration
       //console.log("Incoming value: "+val);
@@ -168,6 +175,8 @@ define(['net/AppData', 'net/arduinoControl'],function(AppData, arduino) {
     });
 
     //set the interval for reading the battery voltage from the arduino
+    // TODO-TN: This can be removed once the battery drain
+    // is simulated elsewhere in application code.
     hardware.batteryInt = setInterval(function() {
       arduino.analogRead(0);
     }, 500);
@@ -185,9 +194,19 @@ define(['net/AppData', 'net/arduinoControl'],function(AppData, arduino) {
    * Description: starts the ramping function to control the sun's brightness.
    * The timeout controls the time between each analogWrite.
    */
+  // TODO-TN: This should simply send out the 
+  // message to the arduino to turn sun light on or off, 
+  // and let arduino handle the rest.
+
+  // 0 = off (out of sunlight)
+  // 1 = on (in sunlight)
   hardware.sunState = function(mode) {
+    console.log('☀️ sunState()', mode);
     snState = mode;
-    setTimeout(hardware.rampSun, 10);
+    // setTimeout(hardware.rampSun, 10);
+    const onOff = mode ? 'on' : 'off';
+    console.log('sending', onOff);
+    arduino.passThru(`{sun:${onOff}}`);
   };
 
   /*
@@ -200,6 +219,10 @@ define(['net/AppData', 'net/arduinoControl'],function(AppData, arduino) {
    * the sunLevel, command the arduino to that level, and set this function to
    * be call again in 10ms.
    */
+  // TODO: [TN] We can keep this same logic, 
+  // but instead of using analogWrite every tick,
+  // we can only send arduino message when transition
+  // between off/on is required.
   hardware.rampSun = function() {
     if (snState && sunLevel < 255) {
       arduino.analogWrite(3, sunLevel++);

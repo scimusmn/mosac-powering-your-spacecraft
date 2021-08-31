@@ -31,6 +31,9 @@ define(
     /* linkHardware() | Connect hardware functions to front-end*/
     ControlManager.linkHardware = function() {
 
+      // TODO-TN: This could be replaced with one big
+      // onData(data) function and a switch statement to parse message/value.
+
       hardware.link(function() {
 
         hardware.oxygen.onchange = function() {
@@ -166,6 +169,12 @@ define(
 
       AppData.setSolarAvailable(value);
 
+      // This tells the arduino to start ramping up
+      // or ramping down the light until it reaches complete
+      // on or off. 
+      // TODO: This can be updated to now
+      // simply tell the arduino to turn on or off, 
+      // and the arduino will do the ramping. -tn
       hardware.sunState(+value);//0 or 1
 
       this.refreshControlDisplays();
