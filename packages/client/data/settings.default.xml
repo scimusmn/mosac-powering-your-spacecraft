@@ -1,37 +1,48 @@
 <?xml version="1.0"?>
 <config>
 
-    <!-- ======== -->
-    <!-- SETTINGS -->
-    <!-- ======== -->
     <settings>
 
         <!-- Set whether secondary language is Spanish or French ('es' or 'fr') -->
         <setting id="secondaryLanguage" value="es" />
-
-        <setting id="developerMode" value="false" />
-        <setting id="orbitDuration" value="90" />
-        <setting id="o2FillRate" value="1" />
-        <setting id="o2DepletionRate" value="-1" />
-        <setting id="o2UpdateRate" value="550" />
-        <setting id="circulationFillRate" value="1" />
-        <setting id="circulationDepletionRate" value="-1" />
-        <setting id="circulationUpdateRate" value="100" />
-
         <!-- Setting for variations in the switch wiring per component -->
+        <!-- TODO: Remove these settings after stripping language functionality -->
         <setting id="invertedSwitches" value="true" />
         <setting id="invertedLanguageSwitches" value="true" />
 
-        <!-- Per-second charging of battery while solar power is available -->
+        <!-- On-screen duration of full orbit animation -->
+        <setting id="orbitDuration" value="90" />
+
+        <!-- Increment value for oxygen (o2) meter -->
+        <setting id="o2FillRate" value="1" />
+        <!-- Decrement value for o2 meter -->
+        <setting id="o2DepletionRate" value="-1" />
+        <!-- Update interval for o2 meter in milliseconds. Lower value = rise and fall more quickly -->
+        <setting id="o2UpdateRate" value="450" />
+
+        <!-- Increment value for fan (circulation) meter -->
+        <setting id="circulationFillRate" value="1" />
+        <!-- Decrement value for fan meter -->
+        <setting id="circulationDepletionRate" value="-1" />
+        <!-- Update interval for fan meter in milliseconds. Lower value = rise and fall more quickly -->
+        <setting id="circulationUpdateRate" value="100" />
+
+        <!-- Per-second charging of battery while absorbing solar power -->
         <setting id="batteryFillRate" value="15" />
 
-        <!-- The per-second draw of each life system while active -->
-        <setting id="oxygenBatteryDraw" value="8" />
-        <setting id="fanBatteryDraw" value="6" />
-        <setting id="foodBatteryDraw" value="3" />
-        <setting id="commBatteryDraw" value="2" />
-        <setting id="heatBatteryDraw" value="7" />
-        <setting id="lightsBatteryDraw" value="3" />
+        <!-- Per-second draw of each life system while active -->
+        <setting id="oxygenBatteryDraw" value="2.5" />
+        <setting id="fanBatteryDraw" value="2" />
+        <setting id="foodBatteryDraw" value="1" />
+        <setting id="commBatteryDraw" value="1" />
+        <setting id="heatBatteryDraw" value="2.5" />
+        <setting id="lightsBatteryDraw" value="1" />
+
+        <!-- Multiplier of batteryFillRate while on hard difficulty. Lower value = more difficult -->
+        <setting id="hardMultiplierBatteryFillRate" value="1.0" />
+
+        <!-- Multiplier of power draws while on hard difficulty. Higher value = more difficult -->
+        <setting id="hardMultiplierBatteryDraw" value="2.5" />
 
     </settings>
 
