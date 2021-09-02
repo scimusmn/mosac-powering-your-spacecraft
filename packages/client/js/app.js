@@ -29,8 +29,8 @@ require(
     /**
      * Initial load
      */
-
-      // Load config settings
+     
+    // Load config settings
     $.ajax({
       type: 'GET',
       url: 'data/settings.xml',
@@ -78,6 +78,7 @@ require(
       setTimeout(function () {
 
         // Setup the knob settings and their on-screen visuals
+        console.log('LOG ENABLED ControlManager.setupControls();');
         ControlManager.setupControls();
 
         // Setup development keyboard commands. For testing only. 

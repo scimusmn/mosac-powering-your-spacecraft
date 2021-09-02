@@ -38,7 +38,6 @@ define(
 
         hardware.oxygen.onchange = function() {
           ControlManager.setControlState('o2_control', this.state);
-          console.log('State:' + this.state)
         };
 
         hardware.fan.onchange = function() {
@@ -78,8 +77,8 @@ define(
 
     };
 
-    var batteryGood = true;
-    var incTimeout = null;
+    // var batteryGood = true;
+    // var incTimeout = null;
 
     /***********************************
      * Function: incrementUp
@@ -89,37 +88,64 @@ define(
      * wait half a second, and do this function again.
      ***********************************/
 
-    ControlManager.incrementUp = function() {
-      if (AppData.currentPowerLevel < hardware.battery) {
-        AppData.currentPowerLevel++;
-        clearTimeout(incTimeout);
-        incTimeout = setTimeout(ControlManager.incrementUp, 500);
-        ControlManager.batteryPack.updatePackLevel(AppData.currentPowerLevel);
-      }
-    };
+    // ControlManager.incrementUp = function() {
+    //   if (AppData.currentPowerLevel < hardware.battery) {
+    //     AppData.currentPowerLevel++;
+    //     clearTimeout(incTimeout);
+    //     incTimeout = setTimeout(ControlManager.incrementUp, 500);
+    //     ControlManager.batteryPack.updatePackLevel(AppData.currentPowerLevel);
+    //   }
+    // };
 
     ControlManager.checkBatteries = function() {
 
-      var reading = hardware.battery;
-      var prevReading = AppData.currentPowerLevel;
+      console.log('checkBatteries');
+
+      // TODO-TN: Deplete battery for every system that is 
+      // using battery power. 
+      // Question - Is this how it worked before? Does every life system
+      // use the same amount of power? 
+
+      // TODO-TN: If in sunlight, fill batteries. 
+
+      // Deplete battery for every active life system currently using battery.
+      if (hardware.oxygen.state === 2) AppData.currentPowerLevel -= AppData.oxygenBatteryDraw;
+      if (hardware.fan.state === 2) AppData.currentPowerLevel -= AppData.fanBatteryDraw;
+      if (hardware.food.state === 2) AppData.currentPowerLevel -= AppData.foodBatteryDraw;
+      if (hardware.comm.state === 2) AppData.currentPowerLevel -= AppData.commBatteryDraw;
+      if (hardware.heat.state === 2) AppData.currentPowerLevel -= AppData.heatBatteryDraw;
+      if (hardware.lights.state === 2) AppData.currentPowerLevel -= AppData.lightsBatteryDraw;
+      
+      // var reading = hardware.battery;
+      // var prevReading = AppData.currentPowerLevel;
+
+      // console.log('reading', reading);
+      // console.log('prevReading', prevReading);
 
       //AppData.currentPowerLevel = reading;
       //ControlManager.batteryPack.updatePackLevel( AppData.currentPowerLevel );
 
       // if the sun is on, and the battery pack is turned off, turn it on
       if (AppData.solarAvailable) {
-        hardware.enableBattery();
+        // hardware.enableBattery();
+        AppData.currentPowerLevel += AppData.batteryFillRate;
       }
       //else, if the battery pack is inactive, keep the reading at 0
-      else if (!hardware.batteryState) {
-        reading = 0;
-      }
+      // else if (!hardware.batteryState) {
+      //   reading = 0;
+      // }
 
       // if the sun is on, check the try to increment the power level
-      if (AppData.solarAvailable) ControlManager.incrementUp();
+      // if (AppData.solarAvailable) ControlManager.incrementUp();
       // if we're in the night pass, don't let the battery voltage spring back up
       // when a device is turned off.
-      else if (reading < prevReading) AppData.currentPowerLevel = reading;
+      // else if (reading < prevReading) AppData.currentPowerLevel = reading;
+
+      console.log('AppData.currentPowerLevel', AppData.currentPowerLevel);
+
+      // Clamp power level
+      if (AppData.currentPowerLevel < 0) AppData.currentPowerLevel = 0;
+      if (AppData.currentPowerLevel > 100) AppData.currentPowerLevel = 100;
 
       ControlManager.batteryPack.updatePackLevel(AppData.currentPowerLevel);
 
@@ -129,13 +155,13 @@ define(
        } else if (prevReading <= 0 && reading > 0){
        ControlManager.refreshControlDisplays();
        }*/
-      if ((batteryGood && !reading) || (!batteryGood && reading)) {
+      // if ((batteryGood && !reading) || (!batteryGood && reading)) {
         ControlManager.refreshControlDisplays();
-        ControlManager.batteryPack.warningState = (reading > 25);
-        ControlManager.batteryPack.deadState = (reading > 0);
+        ControlManager.batteryPack.warningState = (AppData.currentPowerLevel > 25);
+        ControlManager.batteryPack.deadState = (AppData.currentPowerLevel > 0);
         ControlManager.batteryPack.refreshText();
-        batteryGood = reading;
-      }
+        // batteryGood = reading;
+      // }
 
     };
 

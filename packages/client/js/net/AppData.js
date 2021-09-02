@@ -28,8 +28,17 @@ define([], function() {
     this.circulationUpdateRate = this.getFloat('circulationUpdateRate');
     this.invertedSwitches = this.getBool('invertedSwitches');
     this.invertedLanguageSwitches = this.getBool('invertedLanguageSwitches');
-    this.batteryScale = this.getFloat('batteryScale');
-    this.batteryOffset = this.getFloat('batteryOffset');
+    // this.batteryScale = this.getFloat('batteryScale');
+    // this.batteryOffset = this.getFloat('batteryOffset');
+
+    this.batteryFillRate = this.getFloat('batteryFillRate');
+
+    this.oxygenBatteryDraw = this.getFloat('oxygenBatteryDraw');
+    this.fanBatteryDraw = this.getFloat('fanBatteryDraw');
+    this.foodBatteryDraw = this.getFloat('foodBatteryDraw');
+    this.commBatteryDraw = this.getFloat('commBatteryDraw');
+    this.heatBatteryDraw = this.getFloat('heatBatteryDraw');
+    this.lightsBatteryDraw = this.getFloat('lightsBatteryDraw');
 
     // Global Vars
     this.currentStateId = '';
@@ -87,7 +96,7 @@ define([], function() {
 
   AppData.checkFailureState = function () {
     if (!AppData.failureAlerts) return;
-
+    
     var fstate = false;
     for (var i = 0; i < AppData.failureAlerts.length; i++) {
       var isShowing = $(AppData.failureAlerts[i]).is(':visible');
