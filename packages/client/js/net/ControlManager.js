@@ -31,9 +31,6 @@ define(
     /* linkHardware() | Connect hardware functions to front-end*/
     ControlManager.linkHardware = function() {
 
-      // TODO-TN: This could be replaced with one big
-      // onData(data) function and a switch statement to parse message/value.
-
       hardware.link(function() {
 
         hardware.oxygen.onchange = function() {
@@ -72,6 +69,14 @@ define(
 
       });
 
+      // After linking hardware, request initial states from 
+      // all switches/knobs and update UI to match. 
+      hardware.requestInitialStates();
+
+
+      // Kick off intervals that control simulated battery levels
+      // (This is no longer hardware-based, but leaving here 
+      // to avoid introducing new bugs -tn)
       setInterval(ControlManager.checkBatteries, 1000);
       setInterval(ControlManager.checkAuxiliaryEquipment, 1000);
 
@@ -110,17 +115,19 @@ define(
       if (hardware.heat.state === 2) powerAdjustment -= AppData.heatBatteryDraw;
       if (hardware.lights.state === 2) powerAdjustment -= AppData.lightsBatteryDraw;
 
-      // Temp
-      // if (AppData.getDifficulty() === AppData.DIFFICULTY_HARD) powerAdjustment *= 3;
+      // Multiply overall power draw when in HARD mode
+      if (AppData.getDifficulty() === AppData.DIFFICULTY_HARD) powerAdjustment *= AppData.hardMultiplierBatteryDraw;
 
       // If the sun is view, increase the battery power level.
       if (AppData.solarAvailable) {
         powerAdjustment += AppData.batteryFillRate;
+        // Multiply overall solar power fill when in HARD mode
+        if (AppData.getDifficulty() === AppData.DIFFICULTY_HARD) powerAdjustment *= AppData.hardMultiplierBatteryFillRate;
       }
 
       // Apply the power adjustment to the current battery level
       AppData.currentPowerLevel +=  powerAdjustment;
-      
+
       console.log('AppData.currentPowerLevel', AppData.currentPowerLevel);
 
       // Clamp power level between 0 and 100

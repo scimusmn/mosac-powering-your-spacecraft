@@ -16,6 +16,7 @@ define([], function() {
     this.configXML = configXML;
 
     // Settings from XML
+    // TODO-TN: Remove any settings that no longer are being used in code
     this.secondaryLanguage = this.getSetting('secondaryLanguage');
     if (!this.secondaryLanguage) this.secondaryLanguage = 'es';
     this.developerMode = this.getBool('developerMode');
@@ -40,7 +41,11 @@ define([], function() {
     this.heatBatteryDraw = this.getFloat('heatBatteryDraw');
     this.lightsBatteryDraw = this.getFloat('lightsBatteryDraw');
 
-    // Global Vars
+    // Hard mode multipliers
+    this.hardMultiplierBatteryFillRate = this.getFloat('hardMultiplierBatteryFillRate');
+    this.hardMultiplierBatteryDraw = this.getFloat('hardMultiplierBatteryDraw');
+
+    // Global vars
     this.currentStateId = '';
     this.solarAvailable = true;
 

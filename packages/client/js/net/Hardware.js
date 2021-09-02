@@ -73,10 +73,20 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
     wsClient.send(msg);
   };
 
+  // Send a message to the websocket client.
+  hardware.requestInitialStates = function() {
+    console.log('requestInitialStates');
+
+    setTimeout(() => {
+      wsClient.send('{get-all-states:1}');
+    }, 150);
+    
+  };
+
   // Handle messages coming from websocket connection
   hardware.onData = function(evt) {
     const { data } = evt;
-    console.log('harware->onData', data);
+    console.log('hardware.onData', data);
 
     let [message, value] = data.split(':');
     message = message.substring(1);
