@@ -86,7 +86,7 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
   // Handle messages coming from websocket connection
   hardware.onData = function(evt) {
     const { data } = evt;
-    console.log('hardware.onData', data);
+    // console.log('hardware.onData', data);
 
     let [message, value] = data.split(':');
     message = message.substring(1);

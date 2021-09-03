@@ -3,13 +3,6 @@
 
     <settings>
 
-        <!-- Set whether secondary language is Spanish or French ('es' or 'fr') -->
-        <setting id="secondaryLanguage" value="es" />
-        <!-- Setting for variations in the switch wiring per component -->
-        <!-- TODO: Remove these settings after stripping language functionality -->
-        <setting id="invertedSwitches" value="true" />
-        <setting id="invertedLanguageSwitches" value="true" />
-
         <!-- On-screen duration of full orbit animation -->
         <setting id="orbitDuration" value="90" />
 
@@ -47,3 +40,4 @@
     </settings>
 
 </config>
+
