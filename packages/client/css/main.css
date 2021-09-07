@@ -108,7 +108,8 @@ textarea {
  * Global
  */
 body {
-	background: #000;
+	/* background: #000; */
+    background: #434447;
     cursor: none;
 }
 
@@ -131,7 +132,7 @@ p, h3, h2, h1 {
 	/* font-family: 'allerbold', Helvetica, sans-serif; */
     /* font-family: 'Bebas Neue', Helvetica, sans-serif; */
     font-family: 'Gilroy', Helvetica, sans-serif;
-	letter-spacing: 0.1em;
+	letter-spacing: 0.015em;
 }
 
 h1 {
@@ -139,7 +140,8 @@ h1 {
 }
 
 h2 {
-	font-size: 1.5em;
+	font-size: 1.8em;
+    font-weight: 700;
 }
 
 h3 {
@@ -147,7 +149,9 @@ h3 {
 }
 
 p {
-	font-size: 1.2em;
+	font-size: 1.55em;
+    font-weight: 300;
+    letter-spacing: 0.05;
 }
 
 .smaller{
@@ -167,7 +171,7 @@ p {
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
-	border-color: #5d5959;
+	border-color: #C6C9C9;
 }
 .bordered.full {
 	border: 15px solid;
@@ -207,12 +211,12 @@ p {
 }
 .window .window_title h1 {
 	margin: 0px;
-	padding-top: 6px;
+	padding-top: 4px;
     text-transform: uppercase;
 }
 .window .window_title h2 {
 	margin: 0px;
-	padding-top: 8px;
+	padding-top: 5px;
     text-transform: uppercase;
 }
 
@@ -250,7 +254,7 @@ p {
 
 #window_power,
 #window_power .bordered{
-    border-color: #797979;
+    border-color: #C6C9C9;
 }
 
 #window_power #container_batteries div,
@@ -320,8 +324,7 @@ p {
     top: 390px;
     left: 20px;
     font-size: 36px;
-    color: #797979;
-    font-family: 'aller_lightregular';
+    color: #C6C9C9;
 }
 
 #window_power #battery_bars {
@@ -347,7 +350,8 @@ p {
 }
 
 #window_power #batteries_level_percent {
-	bottom: 0%;
+	bottom: -3%;
+    font-size: 2.15em;
 }
 
 
@@ -355,22 +359,28 @@ p {
 #window_instructions {
 	right: 0px;
 	width: 575px;
-	background: #3b6c95;
-	border-color: #3b6c95;
+    background: #490078;
+	border-color: #490078;
 }
 
 #window_instructions #instructions_headline {
-    color: #e6b630;
-    font-size: 3.2em;
+    color: #BBA3DA;
+    font-size: 4em;
     text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 #window_instructions #instructions_subhead {
-    font-size: 2.2em;
+    font-size: 2.85em;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 37px;
+    line-height: 56px;
 }
 
 #window_instructions #console_text {
-	margin: 50px 50px;
+	margin: 0px 22px;
 	overflow-y: visible;
 }
 
@@ -381,7 +391,7 @@ p {
 
 #window_life_support.bordered,
 #window_life_support .bordered {
-	border-color: #3b6c95;
+    border-color: #BBA3DA;
 }
 
 #window_life_support #o2_control{
@@ -423,7 +433,7 @@ p {
 
 #window_auxillary,
 #window_auxillary .bordered{
-    border-color: #5d5959;
+    border-color: #C6C9C9;
 }
 
 #window_auxillary .control {
