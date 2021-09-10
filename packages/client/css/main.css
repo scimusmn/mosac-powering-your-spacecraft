@@ -108,8 +108,7 @@ textarea {
  * Global
  */
 body {
-	/* background: #000; */
-    background: #434447;
+	background: #000;
     cursor: none;
 }
 
@@ -129,8 +128,6 @@ body {
 /*Fonts*/
 p, h3, h2, h1 {
 	color: white;
-	/* font-family: 'allerbold', Helvetica, sans-serif; */
-    /* font-family: 'Bebas Neue', Helvetica, sans-serif; */
     font-family: 'Gilroy', Helvetica, sans-serif;
 	letter-spacing: 0.015em;
 }
@@ -459,7 +456,6 @@ p {
 
 /*Control Icons*/
 .control_icons {
-
 	bottom: 0%;
 	width: 100%;
 	height: 26%;

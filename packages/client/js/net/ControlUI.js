@@ -44,12 +44,12 @@ define(
     ControlUI.prototype.setState = function(stateId) {
 
       this.currentState = stateId;
-      this.refreshStateDisplay();
+      this.refreshStateDisplay(true);
 
     };
 
     // refreshStateDisplay() | refresh animation and icons to match current state.
-    ControlUI.prototype.refreshStateDisplay = function() {
+    ControlUI.prototype.refreshStateDisplay = function(playSound) {
 
       $(this.containerDiv).find('.state_off').parent().find('div .icon').removeClass('red').removeClass('active').addClass('off');
       this.isActive = false;
@@ -104,9 +104,11 @@ define(
 
       }
 
-      //Play sound if necessary
-      Sound.stop(this.sndId);
-      if (this.isActive == true) {
+      // Stop any in-progress sound if being turned off.
+      if (this.isActive == false) Sound.stop(this.sndId);
+
+      // Play sound if necessary
+      if (this.isActive == true && playSound == true) {
         Sound.play(this.sndId);
       }
 

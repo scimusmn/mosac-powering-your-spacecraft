@@ -20,6 +20,8 @@ define(
         ws = new WebSocket(addr);
 
         ws.onopen = function() {
+          console.log('Websocket onopen');
+
           // Web Socket is connected, send data using send()
           clearInterval(wsClient.connectInterval);
 
@@ -35,6 +37,7 @@ define(
         };
 
         ws.onclose = function() {
+          console.log('Websocket onclose');
           // Websocket is closed.
           wsClient.connectInterval = setInterval(self.connect.bind(self), 2000);
         };

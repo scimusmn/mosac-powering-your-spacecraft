@@ -92,7 +92,7 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
     message = message.substring(1);
     value = value.substring(0, value.length - 2);
 
-    console.log(message, value);
+    console.log('hardware.onData:', message, value);
 
     // Note - this is where we patch the original hardware naming
     // scheme to the new arduino message scheme. (e.g. grow -> food) -tn

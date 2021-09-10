@@ -138,7 +138,7 @@ define(
       ControlManager.batteryPack.updatePackLevel(AppData.currentPowerLevel);
 
       // Update the battery UI
-      ControlManager.refreshControlDisplays();
+      ControlManager.refreshControlDisplays(false);
       ControlManager.batteryPack.warningState = (AppData.currentPowerLevel > 25);
       ControlManager.batteryPack.deadState = (AppData.currentPowerLevel > 0);
       ControlManager.batteryPack.refreshText();
