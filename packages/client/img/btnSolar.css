@@ -1,0 +1,17 @@
+/* ----------------------------------------------------
+   created with http://www.codeandweb.com/texturepacker 
+   ----------------------------------------------------
+   $TexturePacker:SmartUpdate:42aa3f2ef616425bbfd28d52cc46c44e:4bd4c6947f34cd304fe2424c76b956f6:be47e6b8189c836fc5333cc94de05160$
+   ----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(btnSolar.png);}
+
+.btnSolar0001 {width:81px; height:76px; background-position: -0px -0px}
+.btnSolar0002 {width:81px; height:76px; background-position: -81px -0px}
+.btnSolar0003 {width:81px; height:76px; background-position: -162px -0px}

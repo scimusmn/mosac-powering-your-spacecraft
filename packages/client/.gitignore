@@ -1,5 +1,5 @@
-img
-sounds
+# img
+# sounds
 .DS_Store
 data/settings.xml
 data/serialPort.js
