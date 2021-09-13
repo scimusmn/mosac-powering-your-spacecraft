@@ -56,18 +56,18 @@ SerialPort.list().then((list) => {
 const enableSerial = (path) => {
   serialPort = new SerialPort(path, { baudRate: 115200, autoOpen: false });
 
-  // serialPort = new SerialPort(path, {
-  //   baudRate: 115200,
-  // }, (err) => {
-  //   console.log('SerialPort open event');
-  //   if (err) {
-  //     console.log('Error: ' + err);
-  //   } else {
-  //     setTimeout(() => {
-  //       serialPort.write('{wake-arduino:1}');
-  //     }, 1000);
-  //   }
-  // });
+  serialPort = new SerialPort(path, {
+    baudRate: 115200,
+  }, (err) => {
+    console.log('SerialPort open event');
+    if (err) {
+      console.log('Error: ' + err);
+    } else {
+      setTimeout(() => {
+        serialPort.write('{wake-arduino:1}');
+      }, 1000);
+    }
+  });
 
   serialPort.pipe(parser);
 
@@ -77,15 +77,15 @@ const enableSerial = (path) => {
     console.log(data);
   });
 
-  setTimeout(() => {
-    serialPort.open( (err) => {
-      if (err) {
-        return console.log('Error opening port: ', err.message)
-      }
+  // setTimeout(() => {
+  //   serialPort.open( (err) => {
+  //     if (err) {
+  //       return console.log('Error opening port: ', err.message)
+  //     }
     
-      serialPort.write('{wake-arduino:1}');
+  //     serialPort.write('{wake-arduino:1}');
 
-    })
-  }, 1500);
+  //   })
+  // }, 1500);
 
 }
