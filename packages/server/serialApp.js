@@ -17,7 +17,7 @@ wss.on('connection', function(ws) {
 
   ws.on('message', function(message) {
     // Forward message from client to serial port
-    if (serialPort) serialPort.write(message + '|');
+    if (serialPort) serialPort.write(message);
     console.log(message);
   });
 
@@ -41,7 +41,7 @@ SerialPort.list().then((list) => {
   Object.keys(list).forEach((key) => {
     const portInfo = list[key];
     const { path, manufacturer } = portInfo;
-    console.log(path);
+    console.log('Checking port:', manufacturer, path);
     if (manufacturer !== undefined) {
       if (manufacturer.includes('Arduino') 
         || manufacturer.includes('Adafruit')
@@ -74,18 +74,3 @@ const enableSerial = (path) => {
   });
 
 }
-
-// Examples of working outward communication
-//
-
-// setTimeout(() => {
-//   serialPort.write('{sun:on}');
-// }, 5000);
-
-// setTimeout(() => {
-//   serialPort.write('{get-all-states:1}');
-// }, 7500);
-
-// setTimeout(() => {
-//   serialPort.write('{sun:off}');
-// }, 9500);
