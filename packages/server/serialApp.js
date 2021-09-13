@@ -57,14 +57,25 @@ const enableSerial = (path) => {
 
   serialPort = new SerialPort(path, {
     baudRate: 115200,
-  });
+  }, (err) => {
+    console.log('open event');
+    if (err) {
+      console.log('Error: ' + err);
+    }
+  }
+  );
 
   serialPort.pipe(parser);
 
-  serialPort.on('open', function() {
-    setTimeout(() => {
-      serialPort.write('{wake-arduino:1}');
-    }, 1000);
+  serialPort.on('open', (err) => {
+    console.log('Serial port open');
+    if (err) {
+      console.log('OPEN ERROR', err);
+    } else {
+      setTimeout(() => {
+        serialPort.write('{wake-arduino:1}');
+      }, 1000);
+    }
   })
 
   parser.on('data', (data) => {
