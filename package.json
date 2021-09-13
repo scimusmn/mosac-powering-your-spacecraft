@@ -4,6 +4,7 @@
   "scripts": {
     "setup": "run-p setup:*",
     "setup:client": "cd packages/client/data/ && cp settings.default.xml settings.xml",
+    "setup:server": "cd packages/server/ && yarn",
     "start": "run-p start:server start:client",
     "start-windows": "run-p start:server start:client-windows",
     "start:server": "cd packages/server/ && node serialApp.js",
