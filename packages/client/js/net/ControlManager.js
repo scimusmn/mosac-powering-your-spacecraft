@@ -57,15 +57,9 @@ define(
           ControlManager.setControlState('light_control', this.state)
         };
 
-        // hardware.language.onchange = function() {
-        //   Language.convertState(this.state);
-        // };
-
         hardware.difficulty.onchange = function() {
           ControlManager.setDifficulty(this.state)
         };
-
-        // hardware.update();
 
       });
 
@@ -81,26 +75,6 @@ define(
       setInterval(ControlManager.checkAuxiliaryEquipment, 1000);
 
     };
-
-    // var batteryGood = true;
-    // var incTimeout = null;
-
-    /***********************************
-     * Function: incrementUp
-     * Arguments: None
-     * Description: As long as hardware.battery is greater than
-     * AppData.currentPowerLevel, increment currentPowerLevel, update the display,
-     * wait half a second, and do this function again.
-     ***********************************/
-
-    // ControlManager.incrementUp = function() {
-    //   if (AppData.currentPowerLevel < hardware.battery) {
-    //     AppData.currentPowerLevel++;
-    //     clearTimeout(incTimeout);
-    //     incTimeout = setTimeout(ControlManager.incrementUp, 500);
-    //     ControlManager.batteryPack.updatePackLevel(AppData.currentPowerLevel);
-    //   }
-    // };
 
     ControlManager.checkBatteries = function() {
 
@@ -127,8 +101,6 @@ define(
 
       // Apply the power adjustment to the current battery level
       AppData.currentPowerLevel +=  powerAdjustment;
-
-      console.log('AppData.currentPowerLevel', AppData.currentPowerLevel);
 
       // Clamp power level between 0 and 100
       if (AppData.currentPowerLevel < 0) AppData.currentPowerLevel = 0;
@@ -176,11 +148,7 @@ define(
       AppData.setSolarAvailable(value);
 
       // This tells the arduino to start ramping up
-      // or ramping down the light until it reaches complete
-      // on or off. 
-      // TODO: This can be updated to now
-      // simply tell the arduino to turn on or off, 
-      // and the arduino will do the ramping. -tn
+      // or ramping down the light 
       hardware.sunState(+value);//0 or 1
 
       this.refreshControlDisplays();
