@@ -89,8 +89,6 @@ define(
       if (hardware.heat.state === 2) powerAdjustment -= AppData.heatBatteryDraw;
       if (hardware.lights.state === 2) powerAdjustment -= AppData.lightsBatteryDraw;
 
-      powerAdjustment -= 11;
-
       // Multiply overall power draw when in HARD mode
       if (AppData.getDifficulty() === AppData.DIFFICULTY_HARD) powerAdjustment *= AppData.hardMultiplierBatteryDraw;
 
