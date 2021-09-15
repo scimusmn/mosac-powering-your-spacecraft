@@ -93,6 +93,8 @@ require(
     function startSpaceStationOrbit() {
       var containerBeacon = $('#container_beacon');
 
+      console.log('AppData.orbitDuration', AppData.orbitDuration);
+      
       //Orbit Earth
       TweenMax.to($('.space_station_container'), AppData.orbitDuration, {
         css: {rotation: 360},

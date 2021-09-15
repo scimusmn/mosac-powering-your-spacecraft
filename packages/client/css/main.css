@@ -221,7 +221,6 @@ p {
 	position: absolute;
 	text-align: center;
 	width: 100%;
-    text-transform: uppercase;
 }
 .window .control_title.top {
 	top: 0%;
@@ -310,10 +309,9 @@ p {
 
 #window_power #container_orbit #available,
 #window_power #container_orbit #unavailable {
-	left: 54%;
+	left: 51.5%;
 	position: absolute;
 	text-align: left;
-    text-transform: uppercase;
 }
 
 #window_power #container_orbit #time_clock {
@@ -386,9 +384,9 @@ p {
 	width: 895px;
 }
 
-#window_life_support h3 {
+#window_life_support h3.control_title {
 	color: #BBA3DA;
-    font-size: 1.15em;
+    font-size: 1.2em;
 }
 
 #window_life_support.bordered,
@@ -425,17 +423,15 @@ p {
     top: 0px;
 }
 
-
-
 /*Auxillary*/
 #window_auxillary {
 	right: 0px;
 	width: 970px;
 }
 
-#window_auxillary h3 {
+#window_auxillary h3.control_title {
 	color: #BBA3DA;
-    font-size: 1.15em;
+    font-size: 1.2em;
 }
 
 #window_auxillary,
