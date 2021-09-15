@@ -26,6 +26,26 @@ define(
 
       ControlManager.linkHardware();
 
+      // setTimeout(() => {
+      //   ControlManager.setControlState('light_control', 2);
+      // }, 4000);
+
+      // setTimeout(() => {
+      //   ControlManager.setControlState('fan_control', 2);
+      // }, 4000);
+
+      // setTimeout(() => {
+      //   ControlManager.setControlState('o2_control', 2);
+      // }, 4000);
+
+      setTimeout(() => {
+        ControlManager.setControlState('food_control', 1);
+      }, 4000);
+
+      setTimeout(() => {
+        ControlManager.setControlState('comm_control', 1);
+      }, 3000);
+
     };
 
     /* linkHardware() | Connect hardware functions to front-end*/
@@ -46,7 +66,7 @@ define(
         };
 
         hardware.comm.onchange = function() {
-          ControlManager.setControlState('com' + 'm_control', this.state)
+          ControlManager.setControlState('comm_control', this.state)
         };
 
         hardware.heat.onchange = function() {
@@ -151,7 +171,7 @@ define(
       // or ramping down the light 
       hardware.sunState(+value);//0 or 1
 
-      this.refreshControlDisplays();
+      this.refreshControlDisplays(true);
 
     };
 
@@ -167,10 +187,10 @@ define(
     };
 
     /* refreshControlDisplays() | Refresh all control displays against current states */
-    ControlManager.refreshControlDisplays = function() {
+    ControlManager.refreshControlDisplays = function(playSound) {
 
       for (var i = 0; i < this.controls.length; i++) {
-        this.controls[i].refreshStateDisplay();
+        this.controls[i].refreshStateDisplay(playSound);
       }
 
       this.refreshFillBars();

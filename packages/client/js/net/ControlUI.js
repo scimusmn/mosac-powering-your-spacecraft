@@ -108,6 +108,7 @@ define(
       if (this.isActive == false) Sound.stop(this.sndId);
 
       // Play sound if necessary
+      // console.log('playSound', playSound, this.sndId);
       if (this.isActive == true && playSound == true) {
         Sound.play(this.sndId);
       }
