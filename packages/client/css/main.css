@@ -128,7 +128,9 @@ body {
 /*Fonts*/
 p, h3, h2, h1 {
 	color: white;
-	font-family: 'allerbold', Helvetica, sans-serif;
+	/* font-family: 'allerbold', Helvetica, sans-serif; */
+    /* font-family: 'Bebas Neue', Helvetica, sans-serif; */
+    font-family: 'Gilroy', Helvetica, sans-serif;
 	letter-spacing: 0.1em;
 }
 

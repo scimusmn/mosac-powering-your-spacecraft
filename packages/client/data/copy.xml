@@ -16,25 +16,25 @@
             </text>
 
             <text id="solar">
-                <en>SOLAR:</en>
+                <en>Solar:</en>
                 <es>SOLAR:</es>
                 <fr><![CDATA[Solaire&#8202;:]]></fr>
             </text>
 
             <text id="available">
-                <en>AVAILABLE</en>
+                <en>Available</en>
                 <es>DISPONIBLE</es>
                 <fr><![CDATA[Disponible]]></fr>
             </text>
 
             <text id="unavailable">
-                <en>NOT AVAILABLE</en>
+                <en>Not available</en>
                 <es>No está disponible</es>
                 <fr><![CDATA[Indisponible]]></fr>
             </text>
 
             <text id="batteries">
-                <en>BATTERIES</en>
+                <en>Batteries</en>
                 <es><![CDATA[Baterías]]></es>
                 <fr><![CDATA[Batterie]]></fr>
             </text>
@@ -68,49 +68,49 @@
         <window id="window_life_support">
 
             <text id="life_support_equipment">
-                <en><![CDATA[LIFE-SUPPORT EQUIPMENT]]></en>
+                <en><![CDATA[LIFE SUPPORT EQUIPMENT]]></en>
                 <es>Niveles de soporte vital</es>
                 <fr><![CDATA[Équipement de support de vie]]></fr>
             </text>
 
             <text id="oxygen_generator">
-                <en>OXYGEN GENERATOR</en>
+                <en>Generate Oxygen</en>
                 <es>Generador de oxígeno</es>
                 <fr><![CDATA[Niveau d’oxygène]]></fr>
             </text>
 
             <text id="o2_level">
-                <en><![CDATA[O<sub>2</sub> LEVEL]]></en>
+                <en><![CDATA[O<sub>2</sub> level]]></en>
                 <es><![CDATA[Nivel de O<sub>2</sub>]]></es>
                 <fr><![CDATA[RÉSERVE D’OXYGÈNE]]></fr>
             </text>
 
             <text id="fan">
-                <en>FAN</en>
+                <en>Move the Air</en>
                 <es>Ventilador</es>
                 <fr><![CDATA[Ventilateur]]></fr>
             </text>
 
             <text id="circulation">
-                <en>CIRCULATION</en>
+                <en>Circulation</en>
                 <es>Circulación</es>
                 <fr><![CDATA[Circulation de l’air]]></fr>
             </text>
 
             <text id="circulation_feedback_poor">
-                <en>POOR</en>
+                <en>Poor</en>
                 <es>MALA</es>
                 <fr><![CDATA[Mauvais]]></fr>
             </text>
 
             <text id="circulation_feedback_good">
-                <en>GOOD</en>
+                <en>Good</en>
                 <es>BUENA</es>
                 <fr><![CDATA[Bon]]></fr>
             </text>
 
             <text id="circulation_feedback_excellent">
-                <en>EXCELLENT</en>
+                <en>Excellent</en>
                 <es>EXCELENTE</es>
                 <fr><![CDATA[Excellent]]></fr>
             </text>
@@ -127,25 +127,25 @@
             </text>
 
             <text id="growing_food">
-                <en>GROWING FOOD</en>
+                <en>Grow Food</en>
                 <es>Cultivo de alimentos</es>
                 <fr><![CDATA[Culture des aliments]]></fr>
             </text>
 
             <text id="communication">
-                <en>COMMUNICATION</en>
+                <en>Communicate</en>
                 <es>Comunicaciones</es>
                 <fr><![CDATA[Communication]]></fr>
             </text>
 
             <text id="heat_to_cook">
-                <en>HEAT TO COOK</en>
+                <en>Cook Food</en>
                 <es>Calor para cocinar</es>
                 <fr><![CDATA[Chaleur pour la cuisson]]></fr>
             </text>
 
             <text id="interior_lights">
-                <en>INTERIOR LIGHTS</en>
+                <en>Light the Module</en>
                 <es>Luces interiores</es>
                 <fr><![CDATA[Lumières intérieures]]></fr>
             </text>
