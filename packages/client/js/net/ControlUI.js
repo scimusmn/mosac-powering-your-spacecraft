@@ -51,6 +51,8 @@ define(
     // refreshStateDisplay() | refresh animation and icons to match current state.
     ControlUI.prototype.refreshStateDisplay = function(playSound) {
 
+      var wasActive = this.isActive;
+
       $(this.containerDiv).find('.state_off').parent().find('div .icon').removeClass('red').removeClass('active').addClass('off');
       this.isActive = false;
 
@@ -67,8 +69,10 @@ define(
 
           if (AppData.solarAvailable == true) {
 
-            $(this.controlAnimation).animateSprite('frame', 1);
-            $(this.controlAnimation).animateSprite('play', 'active');
+            if (wasActive == false) {
+              $(this.controlAnimation).animateSprite('frame', 1);
+              $(this.controlAnimation).animateSprite('play', 'active');
+            }
             $(this.containerDiv).find('.state_solar .icon').first().removeClass('off red').addClass('active');
             this.isActive = true;
             this.checkFailureTimeout();
@@ -86,8 +90,10 @@ define(
 
           if (AppData.currentPowerLevel > 0) {
 
-            $(this.controlAnimation).animateSprite('frame', 1);
-            $(this.controlAnimation).animateSprite('play', 'active');
+            if (wasActive == false) {
+              $(this.controlAnimation).animateSprite('frame', 1);
+              $(this.controlAnimation).animateSprite('play', 'active');
+            }
             $(this.containerDiv).find('.state_battery .icon').first().removeClass('off red').addClass('active');
             this.isActive = true;
             this.checkFailureTimeout();
@@ -109,7 +115,8 @@ define(
 
       // Play sound if necessary
       // console.log('playSound', playSound, this.sndId);
-      if (this.isActive == true && playSound == true) {
+      // if (this.isActive == true && playSound == true) {
+      if (this.isActive == true && wasActive == false) {
         Sound.play(this.sndId);
       }
 
