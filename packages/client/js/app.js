@@ -66,7 +66,7 @@ require(
       // Load sound effects
       Sound.preloadSounds('sounds/', [
         'alarms', 'rustling', 'cooking', 'fan', 'lights', 'telecom',
-        'male-breathing', 'female-breathing', 'bubbles'
+        'male-breathing', 'female-breathing', 'bubbles', 'station'
       ]);
 
       /**

@@ -1,2 +1,2 @@
-TIMEOUT /T 10
+TIMEOUT /T 5
 yarn start-windows

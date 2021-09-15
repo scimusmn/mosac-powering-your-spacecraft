@@ -29,6 +29,14 @@ define(
         // console.log('Sound '+sndId+' not found.');
       }
 
+      // Whenever telecom sound plays, we
+      // also want to play station sound,
+      // which will come out of dashboard.
+      if (sndId === 'telecom') {
+        var sndRadioStation = sounds['station'];
+        sndRadioStation.play();
+      }
+
     };
 
     //Stop a sound if it is currently playing
@@ -39,6 +47,13 @@ define(
         s.stop();
       } else {
         // console.log('Sound ['+sndId+'] not found.');
+      }
+
+      // Whenever telecom sound stops, we
+      // also want to stop station sound.
+      if (sndId === 'telecom') {
+        var sndRadioStation = sounds['station'];
+        sndRadioStation.stop();
       }
 
     };
