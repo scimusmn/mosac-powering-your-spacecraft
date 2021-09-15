@@ -386,6 +386,11 @@ p {
 	width: 895px;
 }
 
+#window_life_support h3 {
+	color: #BBA3DA;
+    font-size: 1.15em;
+}
+
 #window_life_support.bordered,
 #window_life_support .bordered {
     border-color: #BBA3DA;
@@ -426,6 +431,11 @@ p {
 #window_auxillary {
 	right: 0px;
 	width: 970px;
+}
+
+#window_auxillary h3 {
+	color: #BBA3DA;
+    font-size: 1.15em;
 }
 
 #window_auxillary,
@@ -528,6 +538,8 @@ p {
 #popup_you_are_dead p {
     margin: 150px 120px;
 }
+
+
 
 #popup_you_are_dead h1 {
     color: #e6b630;
