@@ -114,9 +114,20 @@ void onParse(char *message, char *value)
     else if (strcmp(message, "sun") == 0)
     {
         if (strcmp(value, "on") == 0)
+            solar_available = 1; //solar power is now available
             sun.rampTo(100, 2000); //fade sun to 100% in 2000 millisec.
         else if (strcmp(value, "off") == 0)
+            solar_available = 0; //solar power is no longer available
             sun.rampTo(0, 2000); //fade sun to 0% in 2000 millisec.
+    }
+    else if (strcmp(message, "battery-available") == 0)
+    {
+        if (strcmp(value, "on") == 0)
+            battery_available = 1; //battery power is now available
+            //TODO: turn on any electronics that are set to battery power
+        else if (strcmp(value, "off") == 0)
+            battery_available = 0; //battery power is no longer available
+            //TODO: turn off any electronics that are set to battery power
     }
 
     // sends the current state of the controll board selectors.
