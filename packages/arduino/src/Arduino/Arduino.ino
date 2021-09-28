@@ -41,6 +41,8 @@ const int interior_pin = 20;
 const int sun_pwm_pin = 2;
 
 bool is_hard = 0;
+bool solar_available = 0;
+bool battery_available = 0;
 
 //part of set up for serial communication with React
 SerialController serialController;
