@@ -18,8 +18,8 @@ class SerialSelector
     int pinBattery;
     int pinOutput;
     int state;
-    int solarAvailable;
-    int batteryAvailable;
+    int solarAvailable = 1;
+    int batteryAvailable = 1;
 
   public:
     SerialSelector(SerialController *_serialC, char _message[30], int _p, int _p2, int _p3)
