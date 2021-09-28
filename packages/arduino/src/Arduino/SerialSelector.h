@@ -58,7 +58,7 @@ public:
             // Battery mode
             state = 2;
             sendState();
-            if (batteryAvailable == 1) // // Turn on if simulated battery power available
+            if (batteryAvailable == 1) // Turn on if simulated battery power available
             {
                 digitalWrite(pinOutput, HIGH);
             }
