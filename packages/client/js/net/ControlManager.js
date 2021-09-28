@@ -99,12 +99,22 @@ define(
         if (AppData.getDifficulty() === AppData.DIFFICULTY_HARD) powerAdjustment *= AppData.hardMultiplierBatteryFillRate;
       }
 
+      const prevPowerLevel = AppData.currentPowerLevel;
+
       // Apply the power adjustment to the current battery level
       AppData.currentPowerLevel +=  powerAdjustment;
 
       // Clamp power level between 0 and 100
       if (AppData.currentPowerLevel < 0) AppData.currentPowerLevel = 0;
       if (AppData.currentPowerLevel > 100) AppData.currentPowerLevel = 100;
+      
+      if (prevPowerLevel <= 0 && AppData.currentPowerLevel > 0) {
+        // Batteries have just regained power. Notify Arduino.
+        hardware.batteryState(1);
+      } else if (prevPowerLevel > 0 && AppData.currentPowerLevel <= 0) {
+        // Batteries have just depleted power. Notify Arduino.
+        hardware.batteryState(0);
+      }
 
       // Update the current battery pack level
       ControlManager.batteryPack.updatePackLevel(AppData.currentPowerLevel);

@@ -142,14 +142,14 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
 
     hardware.initCB = cb;
 
-    // Set initial sun state
+    // Set initial sun/battery state
     setTimeout(() => {
       hardware.sunState(1);
+      setTimeout(() => {
+        hardware.batteryState(1);
+      }, 50);
     }, 50);
   };
-
-  // hardware.batteryInt is the stores the interval timer for checking battery voltage
-  hardware.batteryInt = null;
 
   // switchTime stores the time that the battery was last disabled, to make sure it
   // is not simply toggling on and off
@@ -187,43 +187,13 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
    */
   hardware.init = function() {
 
-    // TODO-TN: This should be refactored to retain
-    // callbacks, but change based on message strings not pins
     hardware.oxygen = new Device();
     hardware.fan = new Device();
     hardware.food = new Device();
     hardware.comm = new Device();
     hardware.heat = new Device();
     hardware.lights = new Device();
-
     hardware.difficulty = new Switch();
-
-    // TODO-TN: This value must now come from simulation
-    // instead of this handler. Can be removed once the battery drain
-    // is simulated elsewhere in application code.
-
-    // arduino.setHandler(0, function(pin, val) {
-    //   //NOTE: uncomment the following line to monitor the incoming value, for calibration
-    //   //console.log("Incoming value: "+val);
-    //   hardware.battery = Math.floor((val - AppData.batteryOffset) / AppData.batteryScale);
-    //   if (hardware.battery <= 0) {
-    //     hardware.disableBattery();
-    //   } else if (hardware.battery >= 20) {
-    //     // TODO: figure out why this is empty
-    //     // This is empty because once the battery is drained, the battery stays
-    //     // disabled until the sun rises again, which is set in ControlManager.js
-    //     // this used to happen when the battery voltage raised above the 20% mark,
-    //     // but there was no advantage to this setup.
-    //     //hardware.enableBattery();
-    //   }
-    // });
-
-    //set the interval for reading the battery voltage from the arduino
-    // TODO-TN: This can be removed once the battery drain
-    // is simulated elsewhere in application code.
-    // hardware.batteryInt = setInterval(function() {
-    //   arduino.analogRead(0);
-    // }, 500);
 
     //if there is an init callback, call it.
     if (hardware.initCB) hardware.initCB();
@@ -234,18 +204,26 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
    * Description: starts the ramping function to control the sun's brightness.
    * The timeout controls the time between each analogWrite.
    */
-  // TODO-TN: This should simply send out the 
-  // message to the arduino to turn sun light on or off, 
-  // and let arduino handle the rest.
 
   // 0 = off (out of sunlight)
   // 1 = on (in sunlight)
   hardware.sunState = function(mode) {
-    console.log('☀️ sunState()', mode);
-    // setTimeout(hardware.rampSun, 10);
+    const onOff = mode ? 'on' : 'off';
+    wsClient.send(`{sun:${onOff}}`);
+  };
+
+  /*
+   * Title: batteryState
+   * Description: Tells Arduino when battery power is available or not.
+   */
+
+  // 0 = off (battery power is unavailable)
+  // 1 = on (battery power is available)
+  hardware.batteryState = function(mode) {
+    console.log('hardware.batteryState()', mode);
     const onOff = mode ? 'on' : 'off';
     console.log('sending', onOff);
-    wsClient.send(`{sun:${onOff}}`);
+    wsClient.send(`{battery-available:${onOff}}`);
   };
 
   return hardware;
