@@ -114,9 +114,9 @@ void onParse(char *message, char *value)
     else if (strcmp(message, "sun") == 0)
     {
         if (strcmp(value, "on") == 0)
-            sun.rampTo(100, 1000); //fade sun to 100% in 1000 millisec.
+            sun.rampTo(100, 2000); //fade sun to 100% in 2000 millisec.
         else if (strcmp(value, "off") == 0)
-            sun.rampTo(0, 1000); //fade sun to 0% in 1000 millisec.
+            sun.rampTo(0, 2000); //fade sun to 0% in 2000 millisec.
     }
 
     // sends the current state of the controll board selectors.
