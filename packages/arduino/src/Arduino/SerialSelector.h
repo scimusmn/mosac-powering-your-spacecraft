@@ -18,6 +18,8 @@ private:
     int pinBattery;
     int pinOutput;
     int state;
+    int solarAvailable;
+    int batteryAvailable;
 
 public:
     SerialSelector(SerialController *_serialC, char _message[30], int _p, int _p2, int _p3)
@@ -36,21 +38,30 @@ public:
     {
         if (digitalRead(pinSolar) && digitalRead(pinBattery) && state != 0)
         {
-            digitalWrite(pinOutput, LOW); //TODO REMOVE THIS LINE
+            // Off mode
+            digitalWrite(pinOutput, LOW);
             state = 0;
             sendState();
         }
         else if (!digitalRead(pinSolar) && state != 1)
         {
-            digitalWrite(pinOutput, HIGH); //TODO REMOVE THIS LINE
+            // Solar mode
             state = 1;
             sendState();
+            if (solarAvailable == 1) // Turn on if simulated solar power available
+            {
+                digitalWrite(pinOutput, HIGH);
+            }
         }
         else if (!digitalRead(pinBattery) && state != 2)
         {
-            digitalWrite(pinOutput, HIGH); //TODO REMOVE THIS LINE
+            // Battery mode
             state = 2;
             sendState();
+            if (batteryAvailable == 1) // // Turn on if simulated battery power available
+            {
+                digitalWrite(pinOutput, HIGH);
+            }
         }
     }
 
@@ -62,6 +73,24 @@ public:
             serialController->sendMessage(message, "solar");
         else if (state == 2)
             serialController->sendMessage(message, "battery");
+    }
+
+    void setSolarAvailability(int _solarAvailable)
+    {
+        solarAvailable = _solarAvailable;
+
+        // By setting state to -1, we force
+        // a state refresh on next update.
+        state = -1;
+    }
+
+    void setBatteryAvailability(int _batteryAvailable)
+    {
+        batteryAvailable = _batteryAvailable;
+
+        // By setting state to -1, we force
+        // a state refresh on next update.
+        state = -1;
     }
 
     bool checkMessageForUpdate(char *serialMessage, char *serialValue)

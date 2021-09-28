@@ -41,8 +41,6 @@ const int interior_pin = 20;
 const int sun_pwm_pin = 2;
 
 bool is_hard = 0;
-bool solar_available = 0;
-bool battery_available = 0;
 
 //part of set up for serial communication with React
 SerialController serialController;
@@ -95,6 +93,22 @@ void updateLevel() //check and send update to level selector
     }
 }
 
+void simSolarAvailability(int avail)
+{
+    for (int i = 0; i < NUMBER_OF_SELECTORS; i++)
+    {
+        Selectors[i].setSolarAvailability(avail);
+    }
+}
+
+void simBatteryAvailability(int avail) 
+{
+    for (int i = 0; i < NUMBER_OF_SELECTORS; i++)
+    {
+        Selectors[i].setBatteryAvailability(avail);
+    }
+}
+
 // this function will run when serialController reads new data
 void onParse(char *message, char *value)
 {
@@ -113,21 +127,21 @@ void onParse(char *message, char *value)
     }
     else if (strcmp(message, "sun") == 0)
     {
-        if (strcmp(value, "on") == 0)
-            solar_available = 1; //solar power is now available
+        if (strcmp(value, "on") == 0) {
+            simSolarAvailability(1); //solar power is now available
             sun.rampTo(100, 2000); //fade sun to 100% in 2000 millisec.
-        else if (strcmp(value, "off") == 0)
-            solar_available = 0; //solar power is no longer available
+        } else if (strcmp(value, "off") == 0) {
+            simSolarAvailability(0);//solar power is no longer available
             sun.rampTo(0, 2000); //fade sun to 0% in 2000 millisec.
+        }
     }
     else if (strcmp(message, "battery-available") == 0)
     {
-        if (strcmp(value, "on") == 0)
-            battery_available = 1; //battery power is now available
-            //TODO: turn on any electronics that are set to battery power
-        else if (strcmp(value, "off") == 0)
-            battery_available = 0; //battery power is no longer available
-            //TODO: turn off any electronics that are set to battery power
+        if (strcmp(value, "on") == 0) {
+            simBatteryAvailability(1); // simulated battery power is now available
+        } else if (strcmp(value, "off") == 0) {
+            simBatteryAvailability(0); // simulated battery power is no longer available
+        }
     }
 
     // sends the current state of the controll board selectors.
