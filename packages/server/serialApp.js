@@ -5,8 +5,6 @@
 var WebSocketServer = require('ws').Server;
 var wss = new WebSocketServer({port: 8080});
 
-// Tell the wsServer what to do on connection to a client;
-
 var webSock = null;
 var serialPort = null;
 
@@ -76,16 +74,5 @@ const enableSerial = (path) => {
     if (webSock) webSock.send(data);
     console.log(data);
   });
-
-  // setTimeout(() => {
-  //   serialPort.open( (err) => {
-  //     if (err) {
-  //       return console.log('Error opening port: ', err.message)
-  //     }
-    
-  //     serialPort.write('{wake-arduino:1}');
-
-  //   })
-  // }, 1500);
 
 }
